@@ -1,4 +1,4 @@
-<section class="section-padding dark:bg-[#020617] transition-colors duration-300">
+<section class="section-padding dark:bg-slate-950 transition-colors duration-300">
     <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div data-aos="fade-right">
@@ -8,10 +8,10 @@
 
             <div data-aos="fade-left">
                 <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Tentang Kami</p>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark dark:text-white transition-colors duration-300">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark dark:text-slate-100 transition-colors duration-300">
                     Produsen Garam Lokal dari Jepara
                 </h2>
-                <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4 transition-colors duration-300">
+                <p class="text-gray-500 dark:text-slate-400 leading-relaxed mb-4 transition-colors duration-300">
                     {{ Str::limit($company?->tentang ?? 'Garam Nusantara memproduksi garam premium langsung dari tambak di Jepara.', 200) }}
                 </p>
 
@@ -23,7 +23,7 @@
                     ] as $stat)
                         <div>
                             <div class="text-2xl sm:text-3xl font-bold text-primary">{{ $stat['number'] }}</div>
-                            <div class="text-xs text-gray-400 dark:text-gray-500 transition-colors duration-300">{{ $stat['label'] }}</div>
+                            <div class="text-xs text-gray-400 dark:text-slate-500 transition-colors duration-300">{{ $stat['label'] }}</div>
                         </div>
                     @endforeach
                 </div>
