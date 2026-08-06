@@ -22,7 +22,7 @@
             {{-- Gallery --}}
             <div data-aos="fade-right" x-data="{ activeImage: 0, images: @json($product['gallery']) }">
                 <div class="overflow-hidden rounded-xl mb-3">
-                    <img :src="images[activeImage]" :alt="{{ json_encode($product['name']) }}"
+                    <img :src="images[activeImage]" alt="{{ $product['name'] }}"
                         class="w-full h-80 sm:h-96 object-cover">
                 </div>
                 <div class="flex gap-2">

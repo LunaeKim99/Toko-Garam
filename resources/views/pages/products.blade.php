@@ -39,7 +39,7 @@
         {{-- Product Grid --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
             <template x-for="product in filtered" :key="product.slug">
-                <a :href="'/produk/' + product.slug"
+                <a :href="productBaseUrl + product.slug"
                     class="group block bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     <div class="overflow-hidden">
                         <img :src="product.image" :alt="product.name"
@@ -80,6 +80,7 @@
         return {
             search: '',
             selectedCategory: 'Semua',
+            productBaseUrl: '{{ route('products') }}/',
             products: @json($products),
             get filtered() {
                 return this.products.filter(p => {
