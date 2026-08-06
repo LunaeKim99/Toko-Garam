@@ -12,8 +12,9 @@ class PageController extends Controller
     {
         $company = CompanyProfile::first();
         $product = Product::first();
+        $productVariants = $this->getProductVariants($product);
 
-        return view('pages.home', compact('company', 'product'));
+        return view('pages.home', compact('company', 'product', 'productVariants'));
     }
 
     public function about()
@@ -27,8 +28,47 @@ class PageController extends Controller
     public function product()
     {
         $product = Product::first();
+        $productVariants = $this->getProductVariants($product);
 
-        return view('pages.product', compact('product'));
+        return view('pages.product', compact('product', 'productVariants'));
+    }
+
+    private function getProductVariants($product)
+    {
+        if (!$product) {
+            return [];
+        }
+
+        return [
+            [
+                'id' => '200g',
+                'nama' => 'Garam 200 Gram',
+                'berat' => '200 g',
+                'deskripsi' => 'Kemasan praktis untuk kebutuhan harian keluarga. Cocok untuk memasak sehari-hari dan konsumsi pribadi.',
+                'icon' => 'package',
+            ],
+            [
+                'id' => '500g',
+                'nama' => 'Garam 500 Gram',
+                'berat' => '500 g',
+                'deskripsi' => 'Ukuran ideal untuk keluarga sedang hingga besar. Hemat dan efisien untuk pengambilan rutin.',
+                'icon' => 'package-2',
+            ],
+            [
+                'id' => '1kg',
+                'nama' => 'Garam 1 Kilogram',
+                'berat' => '1 kg',
+                'deskripsi' => 'Kemasan ekonomis untuk kebutuhan rumah tangga intensif dan usaha kuliner skala kecil.',
+                'icon' => 'package-plus',
+            ],
+            [
+                'id' => '50kg',
+                'nama' => 'Garam 50 Kilogram (1 Karung)',
+                'berat' => '50 kg',
+                'deskripsi' => 'Kemasan industri untuk distributor, pabrik, dan pembelian grosir volume besar.',
+                'icon' => 'truck',
+            ],
+        ];
     }
 
     public function gallery()
