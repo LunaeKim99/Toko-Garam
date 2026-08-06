@@ -5,10 +5,10 @@
 @section('content')
 <div class="flex items-center justify-between mb-8">
     <h1 class="text-2xl font-bold text-dark">Tambah Foto Galeri</h1>
-    <a href="{{ route('admin.gallery.index') }}" class="text-sm text-gray-500 hover:text-primary">← Kembali</a>
+    <a href="{{ route('admin.galeri.index') }}" class="text-sm text-gray-500 hover:text-primary">← Kembali</a>
 </div>
 
-<form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 lg:p-8 rounded-xl shadow-sm border border-gray-200 max-w-xl">
+<form action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 lg:p-8 rounded-xl shadow-sm border border-gray-200 max-w-xl">
     @csrf
 
     <div class="space-y-5">

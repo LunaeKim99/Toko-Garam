@@ -17,7 +17,7 @@
                     <div class="hidden sm:flex items-center gap-4">
                         <a href="{{ route('admin.company-profile.edit') }}" class="text-sm text-gray-600 hover:text-primary">Profil</a>
                         <a href="{{ route('admin.product.edit') }}" class="text-sm text-gray-600 hover:text-primary">Produk</a>
-                        <a href="{{ route('admin.gallery.index') }}" class="text-sm text-gray-600 hover:text-primary">Galeri</a>
+                        <a href="{{ route('admin.galeri.index') }}" class="text-sm text-gray-600 hover:text-primary">Galeri</a>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">

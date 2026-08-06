@@ -22,7 +22,7 @@
         <p class="text-sm text-gray-500">Edit detail produk, spesifikasi, manfaat</p>
     </a>
 
-    <a href="{{ route('admin.gallery.index') }}" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+    <a href="{{ route('admin.galeri.index') }}" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
         <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
             <i data-lucide="image" class="w-6 h-6 text-primary"></i>
         </div>
