@@ -4,5 +4,5 @@
     @if($subtitle)
         <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">{{ $subtitle }}</p>
     @endif
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark dark:text-white transition-colors duration-300">{{ $title }}</h2>
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark dark:text-slate-100 transition-colors duration-300">{{ $title }}</h2>
 </div>
