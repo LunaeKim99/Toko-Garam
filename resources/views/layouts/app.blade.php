@@ -46,7 +46,7 @@
         });
     </script>
 
-    @yield('scripts')
+    @stack('scripts')
 
     {{-- AOS Init --}}
     <script>
