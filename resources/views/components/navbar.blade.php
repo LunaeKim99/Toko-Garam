@@ -29,8 +29,10 @@
 
                 @foreach($navLinks as $link)
                     <a href="{{ $link['url'] }}"
-                        class="text-sm font-medium transition-colors duration-300
-                            {{ request()->routeIs($link['route']) ? 'text-primary' : (scrolled ? 'text-dark hover:text-primary' : 'text-white/90 hover:text-white') }}">
+                        class="text-sm font-medium transition-colors duration-300"
+                        :class="scrolled
+                            ? '{{ request()->routeIs($link['route']) ? 'text-primary' : 'text-dark hover:text-primary' }}'
+                            : '{{ request()->routeIs($link['route']) ? 'text-primary' : 'text-white/90 hover:text-white' }}'">
                         {{ $link['label'] }}
                     </a>
                 @endforeach
