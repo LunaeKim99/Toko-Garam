@@ -30,7 +30,7 @@
 
     @yield('styles')
 </head>
-<body class="font-sans text-dark bg-white antialiased transition-colors duration-300">
+<body class="font-sans text-dark bg-white dark:text-slate-100 dark:bg-slate-950 antialiased transition-colors duration-300">
     <x-navbar />
 
     <main>
