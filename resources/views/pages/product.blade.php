@@ -4,7 +4,7 @@
 @section('meta_description', 'Katalog lengkap garam Nusantara Jepara dalam berbagai kemasan: 200g, 500g, 1kg, dan 50kg (1 karung) untuk kebutuhan rumah tangga hingga industri.')
 
 @section('content')
-<section class="relative py-28 bg-gradient-to-br from-dark to-primary/80 overflow-hidden">
+<section class="relative py-28 bg-linear-to-br from-dark to-primary/80 overflow-hidden">
     <div class="absolute inset-0">
         <img src="https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg" class="w-full h-full object-cover" alt="Garam Kristal">
     </div>
@@ -28,9 +28,8 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
-            @foreach($productVariants as $index => $variant)
-                @php($id = $variant['id'])
-                <div id="{{ $id }}" class="group bg-white dark:bg-slate-900 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-light-gray dark:border-slate-800 overflow-hidden"
+            @forelse($productVariants as $index => $variant)
+                <div id="{{ $variant['id'] }}" class="group bg-white dark:bg-slate-900 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-light-gray dark:border-slate-800 overflow-hidden"
                     data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="aspect-square overflow-hidden">
                         @if($product && $product->gambar)
@@ -54,7 +53,13 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500 dark:text-slate-400">
+                        Produk belum tersedia.
+                    </p>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>
@@ -106,7 +111,7 @@
                     <button @click="faqOpen === {{ $index }} ? faqOpen = null : faqOpen = {{ $index }}"
                         class="w-full flex items-center justify-between p-5 text-left">
                         <span class="font-medium text-dark dark:text-slate-100 text-sm pr-4">{{ $faq['q'] }}</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 dark:text-slate-500 flex-shrink-0 transition-transform duration-300"
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 dark:text-slate-500 shrink-0 transition-transform duration-300"
                             :class="faqOpen === {{ $index }} ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="faqOpen === {{ $index }}" x-cloak x-collapse class="px-5 pb-5">
