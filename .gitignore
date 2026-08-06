@@ -10,7 +10,7 @@
 /.idea
 /.nova
 /.phpunit.cache
-/.vscode
+/.vscode/*
 /.zed
 /.superpowers
 /docs
