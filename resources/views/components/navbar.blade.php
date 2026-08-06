@@ -1,5 +1,5 @@
 <header x-data="{ scrolled: false, mobileOpen: false }" @scroll.window="scrolled = (window.scrollY > 50)"
-    :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm dark:bg-[#0F172A]/95 dark:shadow-none' : 'bg-transparent'"
+    :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm dark:bg-slate-900/95 dark:shadow-none' : 'bg-transparent'"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
 
     <div class="container-custom">
