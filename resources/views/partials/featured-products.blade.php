@@ -7,7 +7,7 @@
             <a href="{{ route('product') }}" class="group block bg-white dark:bg-slate-900 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-light-gray dark:border-slate-800">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="aspect-square md:aspect-auto">
-                        <img src="{{ $product?->gambar ?? 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600' }}"
+                        <img src="{{ $product?->gambar ?? 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg' }}"
                             alt="{{ $product?->nama }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>

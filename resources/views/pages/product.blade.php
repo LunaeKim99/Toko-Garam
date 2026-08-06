@@ -5,9 +5,10 @@
 
 @section('content')
 <section class="relative py-24 bg-gradient-to-br from-dark to-primary/80 overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920" class="w-full h-full object-cover" alt="">
+    <div class="absolute inset-0">
+        <img src="https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg" class="w-full h-full object-cover" alt="Garam Kristal">
     </div>
+    <div class="absolute inset-0 bg-dark/60"></div>
     <div class="relative container-custom text-center">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">Produk Kami</h1>
         <div class="flex items-center justify-center gap-2 text-sm text-white/70">
@@ -23,7 +24,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div data-aos="fade-right">
                 <div class="rounded-xl overflow-hidden shadow-lg">
-                    <img src="{{ $product?->gambar ?? 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=800' }}"
+                    <img src="{{ $product?->gambar ?? 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg' }}"
                         alt="{{ $product?->nama }}" class="w-full h-auto object-cover">
                 </div>
             </div>
@@ -123,7 +124,7 @@
         <x-section-heading title="Pertanyaan Umum" subtitle="FAQ" />
         @php
             $faqs = [
-                ['q' => 'Apakah garam ini aman untuk konsumsi sehari-hari?', 'a' => 'Ya, Garam Meja Jepara Premium aman dikonsumsi sehari-hari. Diproses higienis tanpa bahan pengawet dan pewarna buatan.'],
+                ['q' => 'Apakah garam ini aman untuk konsumsi sehari-hari?', 'a' => 'Ya, Garam Laut Jepara Premium aman dikonsumsi sehari-hari. Diproses higienis tanpa bahan pengawet dan pewarna buatan.'],
                 ['q' => 'Berapa lama umur simpan garam ini?', 'a' => 'Garam memiliki umur simpan 24 bulan dalam kemasan tertutup. Setelah dibuka, segera tutup rapat dan gunakan dalam 6 bulan.'],
                 ['q' => 'Apakah bisa pesan dalam jumlah besar?', 'a' => 'Tentu, kami melayani pemesanan partai besar untuk kebutuhan industri dan distribusi. Hubungi kami via WhatsApp.'],
                 ['q' => 'Bagaimana cara pemesanan?', 'a' => 'Cukup klik tombol "Pesan via WhatsApp" dan kirim pesan. Tim kami akan merespon secepatnya untuk proses pemesanan.'],

@@ -5,22 +5,24 @@
             <div>
                 <div class="flex items-center gap-2 mb-4">
                     <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">GN</span>
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5l8.86 8.86a2 2 0 010-2.83l-8.86-8.86a2 2 0 00-2.83 0L4.5 9.64a2 2 0 010 2.83l8.86 8.86a2 2 0 002.83 0l4.5-4.5"></path>
+                        </svg>
                     </div>
                     <span class="text-lg font-bold">Garam Nusantara</span>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Garam Nusantara — Jepara, Jawa Tengah. Garam produksi sendiri dari tambak Jepara.
+                    Garam Nusantara - Produsen garam premium asli Jepara dari tambak tradisional.
                 </p>
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Menu</h3>
+                <h3 class="font-semibold mb-4">Navigasi</h3>
                 <ul class="space-y-2">
                     @foreach([
-                        ['url' => route('home'), 'label' => 'Home'],
+                        ['url' => route('home'), 'label' => 'Beranda'],
                         ['url' => route('about'), 'label' => 'Tentang Kami'],
-                        ['url' => route('product'), 'label' => 'Produk Kami'],
+                        ['url' => route('product'), 'label' => 'Produk'],
                         ['url' => route('gallery'), 'label' => 'Galeri'],
                         ['url' => route('contact'), 'label' => 'Kontak'],
                     ] as $link)
@@ -34,34 +36,38 @@
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Kontak</h3>
+                <h3 class="font-semibold mb-4">Hubungi Kami</h3>
                 @php($company = \App\Models\CompanyProfile::first())
                 <ul class="space-y-3 text-sm text-gray-400">
                     <li class="flex items-start gap-3">
-                        <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 text-primary flex-shrink-0"></i>
+                        <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
                         <span>{{ $company?->alamat ?? 'Jepara, Jawa Tengah' }}</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i data-lucide="phone" class="w-4 h-4 mt-0.5 text-primary flex-shrink-0"></i>
-                        <span>{{ $company?->telepon ?? '+62 812-3456-7890' }}</span>
+                        <i data-lucide="phone" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
+                        <a href="https://wa.me/{{ $company?->telepon ?? '6281234567890' }}" class="hover:text-primary transition-colors duration-300">
+                            {{ $company?->telepon ?? '+62 812-3456-7890' }}
+                        </a>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i data-lucide="mail" class="w-4 h-4 mt-0.5 text-primary flex-shrink-0"></i>
-                        <span>{{ $company?->email ?? 'info@garamnusantara.co.id' }}</span>
+                        <i data-lucide="mail" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
+                        <a href="mailto:{{ $company?->email ?? 'info@garamnusantara.co.id' }}" class="hover:text-primary transition-colors duration-300">
+                            {{ $company?->email ?? 'info@garamnusantara.co.id' }}
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Jam Operasional</h3>
+                <h3 class="font-semibold mb-4">Jam Layanan</h3>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li class="flex justify-between">
                         <span>Senin - Jumat</span>
-                        <span>08:00 - 17:00</span>
+                        <span>08.00 - 17.00</span>
                     </li>
                     <li class="flex justify-between">
                         <span>Sabtu</span>
-                        <span>08:00 - 13:00</span>
+                        <span>08.00 - 13.00</span>
                     </li>
                     <li class="flex justify-between">
                         <span>Minggu</span>

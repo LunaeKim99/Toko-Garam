@@ -6,9 +6,9 @@
             <div class="swiper-wrapper pb-12">
                 @php
                     $testimonials = [
-                        ['name' => 'Budi Santoso', 'role' => 'PT. Makanan Sehat', 'text' => 'Kualitas garam dari Garam Nusantara sangat konsisten. Kami sudah bekerja sama selama 5 tahun dan tidak pernah kecewa.', 'rating' => 5],
-                        ['name' => 'Siti Rahayu', 'role' => 'Restoran Padang Jaya', 'text' => 'Pengiriman selalu tepat waktu dan kualitas garamnya terbaik. Sangat direkomendasikan untuk bisnis kuliner.', 'rating' => 5],
-                        ['name' => 'Ahmad Fauzi', 'role' => 'Distributor Garam Jatim', 'text' => 'Harga kompetitif dengan kualitas premium. Klien kami juga puas dengan produk dari Garam Nusantara.', 'rating' => 5],
+                        ['name' => 'Pak. Suharto', 'role' => 'Restoran Traditional Jepara', 'text' => 'Garam Laut Jepara Premium dari Garam Nusantara selalu memberikan rasa gurih alami pada setiap hidangan kami. Kami sudah bekerja sama selama 3 tahun.', 'rating' => 5],
+                        ['name' => 'Ibu. Sri Wulandari', 'role' => 'Warung Nasi Campur', 'text' => 'Kualitas garam konsisten dan higienis. Pelanggan selalu kembali untuk memesan kembali. Sangat terjangkau untuk usaha kecil.', 'rating' => 5],
+                        ['name' => 'Kurir Dapur', 'role' => 'CV. Catering Sehat', 'text' => 'Dari tambak langsung ke dapur kami. Rasa garam laut yang kaya akan mineral membuat semua masakan kami lebih sedap.', 'rating' => 5],
                     ];
                 @endphp
 

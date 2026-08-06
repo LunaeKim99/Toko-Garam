@@ -5,9 +5,10 @@
 
 @section('content')
 <section class="relative py-24 bg-gradient-to-br from-dark to-primary/80 overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920" class="w-full h-full object-cover" alt="">
+    <div class="absolute inset-0">
+        <img src="https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg" class="w-full h-full object-cover" alt="">
     </div>
+    <div class="absolute inset-0 bg-dark/60"></div>
     <div class="relative container-custom text-center">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">Tentang Kami</h1>
         <div class="flex items-center justify-center gap-2 text-sm text-white/70">
@@ -17,12 +18,13 @@
         </div>
     </div>
 </section>
+
 <section class="section-padding dark:bg-slate-950 transition-colors duration-300">
     <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800"
-                    alt="Tambak Garam Jepara" class="rounded-xl shadow-lg w-full h-80 object-cover">
+                <img src="https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg"
+                    alt="Tambak Garam Jepara" class="rounded-xl shadow-lg w-full h-96 object-cover">
             </div>
             <div data-aos="fade-left">
                 <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Profil Perusahaan</p>
@@ -62,7 +64,9 @@
     <div class="container-custom max-w-3xl text-center" data-aos="fade-up">
         <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Sejarah</p>
         <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-slate-100 transition-colors duration-300 mb-6">Perjalanan Kami</h2>
-        <p class="text-gray-500 dark:text-slate-400 leading-relaxed transition-colors duration-300">{{ $company?->tentang }}</p>
+        <p class="text-gray-500 dark:text-slate-400 leading-relaxed transition-colors duration-300">
+            Garam Nusantara didirikan dengan visi menghadirkan garam laut berkualitas tinggi dari Jepara, Jawa Tengah. Dimulai dari tambak kecil di pesisir utara Jepara, kami telah berkembang menjadi produsen garam yang dipercaya oleh pelanggan di seluruh Indonesia. Setiap butir garam yang kami hasilkan bercerita tentang dedikasi kami terhadap kualitas, kebersihan, dan keaslian produk laut Jepara.
+        </p>
     </div>
 </section>
 

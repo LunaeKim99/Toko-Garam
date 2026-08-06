@@ -5,9 +5,10 @@
 
 @section('content')
 <section class="relative py-24 bg-gradient-to-br from-dark to-primary/80 overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920" class="w-full h-full object-cover" alt="">
+    <div class="absolute inset-0">
+        <img src="https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg" class="w-full h-full object-cover" alt="Tambak Garam Jepara">
     </div>
+    <div class="absolute inset-0 bg-dark/60"></div>
     <div class="relative container-custom text-center">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">Galeri</h1>
         <div class="flex items-center justify-center gap-2 text-sm text-white/70">

@@ -7,10 +7,10 @@
 
             @php
                 $steps = [
-                    ['number' => '01', 'icon' => 'sun', 'title' => 'Penjemuran', 'desc' => 'Garam dijemur secara alami di bawah sinar matahari pesisir Jepara hingga mengkristal sempurna.'],
-                    ['number' => '02', 'icon' => 'hand', 'title' => 'Pemanenan', 'desc' => 'Kristal garam dipanen langsung dari tambak oleh petani garam berpengalaman.'],
-                    ['number' => '03', 'icon' => 'filter', 'title' => 'Penyortiran', 'desc' => 'Garam disortir berdasarkan ukuran dan kualitas untuk memastikan keseragaman kristal.'],
-                    ['number' => '04', 'icon' => 'package-check', 'title' => 'Pengemasan', 'desc' => 'Garam dikemas dalam kemasan kedap udara menjaga kesegaran hingga ke tangan Anda.'],
+                    ['number' => '01', 'icon' => 'sun', 'title' => 'Penampungan Air Laut', 'desc' => 'Air laut alami masuk ke dalam tambak garam kami untuk memulai proses penguapan.', 'img' => 'https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg'],
+                    ['number' => '02', 'icon' => 'droplets', 'title' => 'Penguapan', 'desc' => 'Air laut menguap di bawah sinar matahari, menyisakan garam di dasar petak-petak tambak.', 'img' => 'https://images.pexels.com/photos/5173683/pexels-photo-5173683.jpeg'],
+                    ['number' => '03', 'icon' => 'hand', 'title' => 'Panen Garam', 'desc' => 'Kristal garam dipanen langsung dari tambak oleh petani garam berpengalaman.', 'img' => 'https://images.pexels.com/photos/27098270/pexels-photo-27098270.jpeg'],
+                    ['number' => '04', 'icon' => 'package-check', 'title' => 'Penyortiran dan Pengemasan', 'desc' => 'Garam disortir, lalu dikemas dalam kemasan kedap udara agar tetap bersih dan kualitasnya terjaga.', 'img' => 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg'],
                 ];
             @endphp
 
@@ -22,12 +22,15 @@
                         <span class="text-white font-bold text-lg">{{ $step['number'] }}</span>
                     </div>
 
-                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm flex-1 border border-light-gray dark:border-slate-800 transition-colors duration-300">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i data-lucide="{{ $step['icon'] }}" class="w-5 h-5 text-primary"></i>
-                            <h3 class="font-semibold text-dark dark:text-slate-100 transition-colors duration-300">{{ $step['title'] }}</h3>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm flex-1 border border-light-gray dark:border-slate-800 transition-colors duration-300 overflow-hidden">
+                        <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-36 object-cover">
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="{{ $step['icon'] }}" class="w-5 h-5 text-primary"></i>
+                                <h3 class="font-semibold text-dark dark:text-slate-100 transition-colors duration-300">{{ $step['title'] }}</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-slate-400 transition-colors duration-300">{{ $step['desc'] }}</p>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-slate-400 transition-colors duration-300">{{ $step['desc'] }}</p>
                     </div>
                 </div>
             @endforeach
