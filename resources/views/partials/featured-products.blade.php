@@ -1,10 +1,10 @@
-<section class="section-padding dark:bg-slate-950 transition-colors duration-300">
+<section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Produk Kami" subtitle="Satu Produk, Kualitas Terbaik" />
 
         <div class="max-w-4xl mx-auto" data-aos="fade-up">
             @if($product)
-            <a href="{{ route('product') }}" class="group block bg-white dark:bg-slate-900 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-light-gray dark:border-slate-800">
+            <a href="{{ route('product') }}" class="group block bg-[var(--surface)] rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-[var(--border)]">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="aspect-square md:aspect-auto">
                         <img src="{{ $product?->gambar ?? 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg' }}"
@@ -13,8 +13,8 @@
                     </div>
                     <div class="p-6 lg:p-8 flex flex-col justify-center">
                         <span class="text-primary font-medium text-sm mb-1">{{ $product?->berat }}</span>
-                        <h3 class="text-xl lg:text-2xl font-bold text-dark dark:text-slate-100 mb-3 transition-colors duration-300">{{ $product?->nama }}</h3>
-                        <p class="text-gray-500 dark:text-slate-400 text-sm leading-relaxed mb-4 transition-colors duration-300">{{ Str::limit($product?->deskripsi, 150) }}</p>
+                        <h3 class="text-xl lg:text-2xl font-bold text-[var(--text)] mb-3 transition-colors duration-300">{{ $product?->nama }}</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-4 transition-colors duration-300">{{ Str::limit($product?->deskripsi, 150) }}</p>
                         <div class="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all duration-300">
                             Lihat Detail
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>

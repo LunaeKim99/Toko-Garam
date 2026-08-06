@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
+/*
+ * AJ Brand Color System
+ * ────────────────────────────────────────────────────────────
+ * This file imports theme.css as the single source of truth for
+ * all design tokens (colors, spacing, shadows, radii).
+ * All Tailwind utilities map to these CSS variables via @theme.
+ *
+ * Light/Dark mode is handled by CSS custom properties on :root/.dark.
+ * Do NOT hardcode colors in Blade templates — use:
+ *   bg-primary, text-text, border-border, bg-surface, etc.
+ */
 @import "./theme.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
