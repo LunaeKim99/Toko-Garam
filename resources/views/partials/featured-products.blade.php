@@ -3,6 +3,7 @@
         <x-section-heading title="Produk Kami" subtitle="Satu Produk, Kualitas Terbaik" />
 
         <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            @if($product)
             <a href="{{ route('product') }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-light-gray">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="aspect-square md:aspect-auto">
@@ -21,6 +22,7 @@
                     </div>
                 </div>
             </a>
+            @endif
         </div>
     </div>
 </section>
