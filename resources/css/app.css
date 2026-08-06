@@ -1,3 +1,90 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #0284C7;
+    --color-primary-light: #38BDF8;
+    --color-primary-dark: #0369A1;
+    --color-dark: #0F172A;
+    --color-dark-light: #1E293B;
+    --color-light: #F8FAFC;
+    --color-light-gray: #E2E8F0;
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'Sora', sans-serif;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        @apply text-dark bg-white antialiased;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+    }
+
+    img {
+        @apply max-w-full h-auto;
+    }
+}
+
+@layer components {
+    .font-heading {
+        font-family: var(--font-heading);
+    }
+
+    .section-padding {
+        @apply py-12 sm:py-16 lg:py-24;
+    }
+
+    .container-custom {
+        @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary-dark transition-all duration-300;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white font-medium rounded-xl hover:bg-white hover:text-dark transition-all duration-300;
+    }
+
+    .btn-whatsapp {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-medium rounded-xl hover:bg-green-600 transition-all duration-300;
+    }
+}
+
+/* AOS disable on mobile */
+@media (max-width: 768px) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Swiper customization */
+.swiper-pagination-bullet-active {
+    @apply !bg-primary;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    @apply !text-white;
+}
+
+/* Fade-in on page load */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+main {
+    animation: fadeIn 0.5s ease-out;
+}
