@@ -111,7 +111,7 @@
 
         <div class="mt-12 rounded-xl overflow-hidden shadow-sm" data-aos="fade-up">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.7!2d110.7!3d-6.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzAnMDAuMCJTIDExMMKwNDInMDAuMCJF!5e0!3m2!1sid!2sid"
+                src="https://www.google.com/maps?q={{ $company->maps_lat ?? -6.666499428336486 }},{{ $company->maps_lng ?? 110.64402441302167 }}&output=embed"
                 width="100%"
                 height="400"
                 style="border:0;"

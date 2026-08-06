@@ -10,7 +10,7 @@
                     <span class="text-lg font-bold">Garam Nusantara</span>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Produsen garam premium langsung dari tambak Jepara. Diproduksi dengan proses higienis dan penjemuran alami.
+                    Garam Nusantara — Jepara, Jawa Tengah. Garam produksi sendiri dari tambak Jepara.
                 </p>
             </div>
 

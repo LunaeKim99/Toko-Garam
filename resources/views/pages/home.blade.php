@@ -9,6 +9,7 @@
     @include('partials.about-preview')
     @include('partials.featured-products')
     @include('partials.process')
+    @include('partials.location')
     @include('partials.testimonials')
     @include('partials.cta')
 @endsection

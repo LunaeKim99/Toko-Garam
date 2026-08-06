@@ -20,6 +20,8 @@ class CompanyProfileFactory extends Factory
             'telepon' => $this->faker->phoneNumber(),
             'email' => $this->faker->safeEmail(),
             'logo' => null,
+            'maps_lat' => $this->faker->latitude(-6.6665, -6.6664),
+            'maps_lng' => $this->faker->longitude(110.6440, 110.6441),
         ];
     }
 }

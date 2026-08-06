@@ -18,5 +18,7 @@ class CompanyProfile extends Model
         'telepon',
         'email',
         'logo',
+        'maps_lat',
+        'maps_lng',
     ];
 }

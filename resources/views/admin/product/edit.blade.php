@@ -36,6 +36,32 @@
         </div>
 
         <div>
+            <label class="block text-sm font-medium text-dark mb-1.5">Spesifikasi</label>
+            <div id="spesifikasi-fields" class="space-y-3">
+                @foreach($product->spesifikasi ?? [] as $key => $value)
+                    <div class="grid grid-cols-12 gap-2 items-center">
+                        <input type="text" name="spesifikasi_key[]" value="{{ old('spesifikasi_key.' . $loop->index, $key) }}"
+                            placeholder="Nama spesifikasi (contoh: Jenis)"
+                            class="col-span-5 sm:col-span-4 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                        <input type="text" name="spesifikasi_value[]" value="{{ old('spesifikasi_value.' . $loop->index, $value) }}"
+                            placeholder="Nilai (contoh: Garam Meja Premium)"
+                            class="col-span-5 sm:col-span-6 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                        <button type="button" onclick="this.closest('.grid').remove()"
+                            class="col-span-2 sm:col-span-2 p-2.5 text-red-500 hover:text-red-700" aria-label="Hapus spesifikasi">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                @endforeach
+            </div>
+            <button type="button" id="add-spesifikasi" class="mt-3 inline-flex items-center gap-2 px-3 py-2 text-sm text-primary hover:text-primary-dark font-medium">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                Tambah Spesifikasi
+            </button>
+            <p class="text-xs text-gray-400 mt-1">Kosongkan nama untuk menghapus spesifikasi</p>
+            @error('spesifikasi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Keunggulan (satu baris per item)</label>
             <textarea name="keunggulan" rows="4"
                 class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('keunggulan', is_array($product->keunggulan) ? implode("\n", $product->keunggulan) : '') }}</textarea>
@@ -77,4 +103,16 @@
         <button type="submit" class="btn-primary">Simpan Perubahan</button>
     </div>
 </form>
+<script>
+    document.getElementById('add-spesifikasi').addEventListener('click', function() {
+        const container = document.getElementById('spesifikasi-fields');
+        const div = document.createElement('div');
+        div.className = 'grid grid-cols-12 gap-2 items-center';
+        div.innerHTML = '<input type="text" name="spesifikasi_key[]" placeholder="Nama spesifikasi" class="col-span-5 sm:col-span-4 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">' +
+            '<input type="text" name="spesifikasi_value[]" placeholder="Nilai spesifikasi" class="col-span-5 sm:col-span-6 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">' +
+            '<button type="button" onclick="this.closest(\'.grid\').remove()" class="col-span-2 sm:col-span-2 p-2.5 text-red-500 hover:text-red-700" aria-label="Hapus spesifikasi"><i data-lucide="trash-2" class="w-5 h-5"></i></button>';
+        container.appendChild(div);
+        lucide.createIcons();
+    });
+</script>
 @endsection

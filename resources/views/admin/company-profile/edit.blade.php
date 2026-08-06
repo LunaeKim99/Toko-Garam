@@ -69,6 +69,23 @@
                 class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary/10 file:text-primary file:font-medium file:text-sm">
             @error('logo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-sm font-medium text-dark mb-1.5">Google Maps Latitude</label>
+                <input type="text" step="any" name="maps_lat" value="{{ old('maps_lat', $company->maps_lat) }}"
+                    placeholder="contoh: -6.666499428336486"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                @error('maps_lat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-dark mb-1.5">Google Maps Longitude</label>
+                <input type="text" step="any" name="maps_lng" value="{{ old('maps_lng', $company->maps_lng) }}"
+                    placeholder="contoh: 110.64402441302167"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                @error('maps_lng') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
     </div>
 
     <div class="mt-6">

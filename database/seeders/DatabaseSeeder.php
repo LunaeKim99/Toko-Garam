@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             'telepon' => '+62 812-3456-7890',
             'email' => 'info@garamnusantara.co.id',
             'logo' => null,
+            'maps_lat' => -6.666499428336486,
+            'maps_lng' => 110.64402441302167,
         ]);
 
         Product::create([

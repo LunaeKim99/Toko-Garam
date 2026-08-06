@@ -26,6 +26,8 @@ class CompanyProfileController extends Controller
             'telepon' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'logo' => 'nullable|image|max:2048',
+            'maps_lat' => 'nullable|numeric|between:-90,90',
+            'maps_lng' => 'nullable|numeric|between:-180,180',
         ]);
 
         $company = CompanyProfile::first();
