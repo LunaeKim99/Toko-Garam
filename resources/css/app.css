@@ -88,3 +88,8 @@
 main {
     animation: fadeIn 0.5s ease-out;
 }
+
+/* Prevent Alpine-hidden elements from flashing before init */
+[x-cloak] {
+    display: none;
+}

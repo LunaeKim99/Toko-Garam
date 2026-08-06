@@ -36,7 +36,7 @@
                 <div class="mb-6">
                     <h3 class="font-semibold text-dark mb-3">Keunggulan</h3>
                     <ul class="space-y-2">
-                        @foreach($product->keunggulan as $item)
+                        @foreach($product->keunggulan ?? [] as $item)
                             <li class="flex items-start gap-2 text-sm text-gray-600">
                                 <i data-lucide="check-circle" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                                 {{ $item }}
@@ -48,7 +48,7 @@
                 <div class="mb-6">
                     <h3 class="font-semibold text-dark mb-3">Manfaat</h3>
                     <ul class="space-y-2">
-                        @foreach($product->manfaat as $item)
+                        @foreach($product->manfaat ?? [] as $item)
                             <li class="flex items-start gap-2 text-sm text-gray-600">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0"></i>
                                 {{ $item }}
@@ -139,7 +139,7 @@
                         <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300"
                             :class="faqOpen === {{ $index }} ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="faqOpen === {{ $index }}" x-collapse class="px-5 pb-5">
+                    <div x-show="faqOpen === {{ $index }}" x-cloak x-collapse class="px-5 pb-5">
                         <p class="text-sm text-gray-500 leading-relaxed">{{ $faq['a'] }}</p>
                     </div>
                 </div>

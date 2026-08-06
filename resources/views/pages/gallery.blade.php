@@ -18,17 +18,32 @@
     </div>
 </section>
 
-<section class="section-padding" x-data="{ activeFilter: 'Semua', lightboxOpen: false, lightboxImg: '', lightboxTitle: '' }">
+@push('scripts')
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('gallery', () => ({
+            activeFilter: 'Semua',
+            lightboxOpen: false,
+            lightboxImg: '',
+            lightboxTitle: '',
+            categories: @json(array_merge(['Semua'], $categories)),
+            items: @json($galleries->map(fn($g) => ['kategori' => $g->kategori, 'gambar' => $g->gambar, 'judul' => $g->judul])->values())
+        }))
+    })
+</script>
+@endpush
+
+<section class="section-padding" x-data="gallery()">
     <div class="container-custom">
         <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
-            <button @click="activeFilter = 'Semua'"
-                :class="activeFilter === 'Semua' ? 'bg-primary text-white' : 'bg-white text-dark hover:bg-primary/10'"
+            <button @click="activeFilter = categories[0]"
+                :class="activeFilter === categories[0] ? 'bg-primary text-white' : 'bg-white text-dark hover:bg-primary/10'"
                 class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray">
                 Semua
             </button>
-            @foreach($categories as $cat)
-                <button @click="activeFilter = '{{ $cat }}'"
-                    :class="activeFilter === '{{ $cat }}' ? 'bg-primary text-white' : 'bg-white text-dark hover:bg-primary/10'"
+            @foreach($categories as $index => $cat)
+                <button @click="activeFilter = categories[{{ $index + 1 }}]"
+                    :class="activeFilter === categories[{{ $index + 1 }}] ? 'bg-primary text-white' : 'bg-white text-dark hover:bg-primary/10'"
                     class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray">
                     {{ $cat }}
                 </button>
@@ -36,13 +51,16 @@
         </div>
 
         <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-            @foreach($galleries as $gallery)
-                <div class="break-inside-avoid" x-show="activeFilter === 'Semua' || activeFilter === '{{ $gallery->kategori }}'"
+            @foreach($galleries as $index => $gallery)
+                <div class="break-inside-avoid" x-show="activeFilter === 'Semua' || activeFilter === items[{{ $index }}].kategori"
                     x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0 scale-95"
-                    x-transition:enter-end="opacity-100 scale-100">
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95">
                     <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                        @click="lightboxOpen = true; lightboxImg = '{{ $gallery->gambar }}'; lightboxTitle = '{{ $gallery->judul }}'">
+                        @click="lightboxOpen = true; lightboxImg = items[{{ $index }}].gambar; lightboxTitle = items[{{ $index }}].judul">
                         <div class="overflow-hidden">
                             <img src="{{ $gallery->gambar }}" alt="{{ $gallery->judul }}"
                                 class="w-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -56,7 +74,7 @@
             @endforeach
         </div>
 
-        <div x-show="lightboxOpen" x-transition:enter="transition ease-out duration-300"
+        <div x-show="lightboxOpen" x-cloak x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
