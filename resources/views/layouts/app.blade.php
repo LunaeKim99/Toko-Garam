@@ -1,36 +1,61 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('meta_title', 'Garam Nusantara — Solusi Garam Berkualitas')</title>
+    <meta name="description" content="@yield('meta_description', 'Garam Nusantara menyediakan produk garam berkualitas tinggi untuk kebutuhan industri dan konsumen.')">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{-- Open Graph --}}
+    <meta property="og:title" content="@yield('meta_title', 'Garam Nusantara')">
+    <meta property="og:description" content="@yield('meta_description', 'Garam berkualitas tinggi.')">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    {{-- Lucide Icons --}}
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    {{-- AOS CSS + JS --}}
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+    {{-- Swiper CSS + JS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    {{-- Vite CSS + JS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @yield('styles')
+</head>
+<body class="font-sans text-dark bg-white antialiased">
+    <x-navbar />
+
+    <main>
+        @yield('content')
+    </main>
+
+    <x-footer />
+
+    {{-- Lucide Icons Init --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
+
+    @yield('scripts')
+
+    {{-- AOS Init --}}
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 50,
+        });
+    </script>
+</body>
 </html>
