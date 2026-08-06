@@ -74,7 +74,7 @@ class PageController extends Controller
             'name' => 'Garam Halus Premium 1kg',
             'category' => 'Garam Halus',
             'weight' => '1 kg',
-            'description' => 'Garam halus premium diproses dari air laut murni menggunakan teknologi modern. Ukuran kristal seragam, cocok untuk kebutuhan dapur rumah tangga maupun industri makanan. Beapat bahan pengawet dan pewarna buatan.',
+            'description' => 'Garam halus premium diproses dari air laut murni menggunakan teknologi modern. Ukuran kristal seragam, cocok untuk kebutuhan dapur rumah tangga maupun industri makanan. Bebas bahan pengawet dan pewarna buatan.',
             'specifications' => [
                 'Jenis' => 'Garam Halus',
                 'Kemasan' => 'Plastik kedap udara',
