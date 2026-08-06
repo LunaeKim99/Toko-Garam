@@ -1,4 +1,4 @@
-<section class="section-padding">
+<section class="section-padding dark:bg-[#020617] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Testimoni" subtitle="Apa Kata Pelanggan Kami" />
 
@@ -14,9 +14,9 @@
 
                 @foreach($testimonials as $testimonial)
                     <div class="swiper-slide">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-light-gray h-full">
+                        <div class="bg-white dark:bg-[#0F172A] p-6 rounded-xl shadow-sm border border-light-gray dark:border-[#1E293B] h-full transition-colors duration-300">
                             <i data-lucide="quote" class="w-8 h-8 text-primary/20 mb-3"></i>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">"{{ $testimonial['text'] }}"</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 transition-colors duration-300">"{{ $testimonial['text'] }}"</p>
                             <div class="flex gap-0.5 mb-3">
                                 @for($i = 0; $i < $testimonial['rating']; $i++)
                                     <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -27,8 +27,8 @@
                                     <span class="text-primary font-semibold text-sm">{{ substr($testimonial['name'], 0, 1) }}</span>
                                 </div>
                                 <div>
-                                    <div class="font-medium text-dark text-sm">{{ $testimonial['name'] }}</div>
-                                    <div class="text-xs text-gray-400">{{ $testimonial['role'] }}</div>
+                                    <div class="font-medium text-dark dark:text-white text-sm transition-colors duration-300">{{ $testimonial['name'] }}</div>
+                                    <div class="text-xs text-gray-400 dark:text-gray-500 transition-colors duration-300">{{ $testimonial['role'] }}</div>
                                 </div>
                             </div>
                         </div>

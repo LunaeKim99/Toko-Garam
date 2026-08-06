@@ -1,4 +1,4 @@
-<section class="section-padding bg-light">
+<section class="section-padding bg-light dark:bg-[#0F172A] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Proses Produksi" subtitle="Dari Tambak Jepara ke Meja Anda" />
 
@@ -22,12 +22,12 @@
                         <span class="text-white font-bold text-lg">{{ $step['number'] }}</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl shadow-sm flex-1">
+                    <div class="bg-white dark:bg-[#111827] p-5 rounded-xl shadow-sm flex-1 border border-light-gray dark:border-[#1E293B] transition-colors duration-300">
                         <div class="flex items-center gap-2 mb-2">
                             <i data-lucide="{{ $step['icon'] }}" class="w-5 h-5 text-primary"></i>
-                            <h3 class="font-semibold text-dark">{{ $step['title'] }}</h3>
+                            <h3 class="font-semibold text-dark dark:text-white transition-colors duration-300">{{ $step['title'] }}</h3>
                         </div>
-                        <p class="text-sm text-gray-500">{{ $step['desc'] }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">{{ $step['desc'] }}</p>
                     </div>
                 </div>
             @endforeach
