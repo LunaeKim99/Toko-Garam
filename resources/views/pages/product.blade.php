@@ -76,7 +76,7 @@
                     Spesifikasi
                 </h3>
                 <div class="space-y-3">
-                    @foreach($product?->spesifikasi as $key => $value)
+                    @foreach(($product?->spesifikasi ?? []) as $key => $value)
                         <div class="flex justify-between text-sm border-b border-light-gray dark:border-slate-800 pb-2">
                             <span class="text-gray-500 dark:text-slate-400">{{ $key }}</span>
                             <span class="font-medium text-dark dark:text-slate-100">{{ $value }}</span>
