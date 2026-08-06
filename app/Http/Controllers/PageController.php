@@ -120,6 +120,19 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        $contactInfo = [
+            'address' => 'Jl. Raya Pantai No. 123, Kel. Muara Baru, Kec. Penjaringan, Jakarta Utara 14470',
+            'phone' => '+62 21 1234 5678',
+            'whatsapp' => '+62 812 3456 7890',
+            'email' => 'info@garamnusantara.co.id',
+            'hours' => [
+                'Senin - Jumat' => '08:00 - 17:00',
+                'Sabtu' => '08:00 - 13:00',
+                'Minggu' => 'Libur',
+            ],
+            'map_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.7!2d106.8!3d-6.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMDYnMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sid!2sid!4v1234567890',
+        ];
+
+        return view('pages.contact', compact('contactInfo'));
     }
 }
