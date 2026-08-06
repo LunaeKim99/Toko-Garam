@@ -106,7 +106,16 @@ class PageController extends Controller
 
     public function articles()
     {
-        return view('pages.articles');
+        $articles = [
+            ['slug' => 'manfaat-garam-konsumsi', 'title' => 'Manfaat Garam untuk Kesehatan Tubuh', 'excerpt' => 'Garam mengandung mineral penting yang dibutuhkan tubuh. Ketahui manfaat dan cara mengonsumsi garam yang benar.', 'category' => 'Kesehatan', 'date' => '15 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600'],
+            ['slug' => 'cara-memilih-garam-masak', 'title' => 'Tips Memilih Garam untuk Masakan', 'excerpt' => 'Tidak semua garam cocok untuk semua masakan. Pelajari perbedaan jenis garam dan kapan menggunakannya.', 'category' => 'Tips', 'date' => '10 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
+            ['slug' => 'proses-pembuatan-garam-tradisional', 'title' => 'Proses Pembuatan Garam Tradisional', 'excerpt' => 'Mengenal proses pengolahan garam dari tambak tradisional hingga menjadi garam siap pakai.', 'category' => 'Edukasi', 'date' => '5 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600'],
+            ['slug' => 'garam-industri-penggunaan', 'title' => 'Penggunaan Garam dalam Industri', 'excerpt' => 'Garam tidak hanya untuk konsumsi. Industri kimia, farmasi, dan tekstil sangat bergantung pada garam.', 'category' => 'Industri', 'date' => '1 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600'],
+            ['slug' => 'standar-kualitas-garam', 'title' => 'Standar Kualitas Garam di Indonesia', 'excerpt' => 'Peraturan dan standar mutu garam yang berlaku di Indonesia, termasuk SNI untuk garam konsumsi.', 'category' => 'Regulasi', 'date' => '25 Juni 2026', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
+            ['slug' => 'garam-himalaya-vs-lokal', 'title' => 'Garam Himalaya vs Garam Lokal', 'excerpt' => 'Perbandingan garam Himalaya yang populer dengan garam lokal Indonesia dari segi kandungan mineral dan harga.', 'category' => 'Edukasi', 'date' => '20 Juni 2026', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
+        ];
+
+        return view('pages.articles', compact('articles'));
     }
 
     public function contact()
