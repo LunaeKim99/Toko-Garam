@@ -1,4 +1,4 @@
-<section class="section-padding bg-light dark:bg-slate-900 transition-colors duration-300">
+<section class="section-padding bg-surface transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Proses Produksi" subtitle="Dari Tambak Jepara ke Meja Anda" />
 
@@ -22,14 +22,14 @@
                         <span class="text-white font-bold text-lg">{{ $step['number'] }}</span>
                     </div>
 
-                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm flex-1 border border-light-gray dark:border-slate-800 transition-colors duration-300 overflow-hidden">
+                    <div class="bg-[var(--surface)] dark:bg-[var(--surface)] rounded-xl shadow-sm-aj flex-1 border border-[var(--border)] transition-colors duration-300 overflow-hidden">
                         <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-36 object-cover">
                         <div class="p-5">
                             <div class="flex items-center gap-2 mb-2">
                                 <i data-lucide="{{ $step['icon'] }}" class="w-5 h-5 text-primary"></i>
-                                <h3 class="font-semibold text-dark dark:text-slate-100 transition-colors duration-300">{{ $step['title'] }}</h3>
+                                <h3 class="font-semibold text-[var(--text)] transition-colors duration-300">{{ $step['title'] }}</h3>
                             </div>
-                            <p class="text-sm text-gray-500 dark:text-slate-400 transition-colors duration-300">{{ $step['desc'] }}</p>
+                            <p class="text-sm text-[var(--text-secondary)] transition-colors duration-300">{{ $step['desc'] }}</p>
                         </div>
                     </div>
                 </div>

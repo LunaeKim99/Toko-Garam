@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white transition-colors duration-300">
+<footer class="bg-[var(--primary-soft)] dark:bg-[var(--surface)] border-t border-[var(--border)] transition-colors duration-300">
     <div class="container-custom section-padding">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
@@ -9,15 +9,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5l8.86 8.86a2 2 0 010-2.83l-8.86-8.86a2 2 0 00-2.83 0L4.5 9.64a2 2 0 010 2.83l8.86 8.86a2 2 0 002.83 0l4.5-4.5"></path>
                         </svg>
                     </div>
-                    <span class="text-lg font-bold">Garam Nusantara</span>
+                    <span class="text-lg font-bold text-[var(--text)]">{{ config('app.name', 'AJ Brand') }}</span>
                 </div>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Garam Nusantara - Produsen garam premium asli Jepara dari tambak tradisional.
+                <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-4">
+                    Produsen garam premium asli Jepara dari tambak tradisional.
                 </p>
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Navigasi</h3>
+                <h3 class="font-semibold text-[var(--text)] mb-4">Navigasi</h3>
                 <ul class="space-y-2">
                     @foreach([
                         ['url' => route('home'), 'label' => 'Beranda'],
@@ -27,7 +27,7 @@
                         ['url' => route('contact'), 'label' => 'Kontak'],
                     ] as $link)
                         <li>
-                            <a href="{{ $link['url'] }}" class="text-gray-400 text-sm hover:text-primary transition-colors duration-300">
+                            <a href="{{ $link['url'] }}" class="text-[var(--text-secondary)] text-sm hover:text-primary transition-colors duration-300">
                                 {{ $link['label'] }}
                             </a>
                         </li>
@@ -36,9 +36,9 @@
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Hubungi Kami</h3>
+                <h3 class="font-semibold text-[var(--text)] mb-4">Hubungi Kami</h3>
                 @php($company = \App\Models\CompanyProfile::first())
-                <ul class="space-y-3 text-sm text-gray-400">
+                <ul class="space-y-3 text-sm text-[var(--text-secondary)]">
                     <li class="flex items-start gap-3">
                         <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
                         <span>{{ $company?->alamat ?? 'Jepara, Jawa Tengah' }}</span>
@@ -59,8 +59,8 @@
             </div>
 
             <div>
-                <h3 class="font-semibold mb-4">Jam Layanan</h3>
-                <ul class="space-y-2 text-sm text-gray-400">
+                <h3 class="font-semibold text-[var(--text)] mb-4">Jam Layanan</h3>
+                <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
                     <li class="flex justify-between">
                         <span>Senin - Jumat</span>
                         <span>08.00 - 17.00</span>
@@ -71,7 +71,7 @@
                     </li>
                     <li class="flex justify-between">
                         <span>Minggu</span>
-                        <span class="text-red-400">Libur</span>
+                        <span class="text-[var(--danger)]">Libur</span>
                     </li>
                 </ul>
             </div>
@@ -79,10 +79,10 @@
         </div>
     </div>
 
-    <div class="border-t border-white/10">
-        <div class="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-500">
-            <span>&copy; {{ date('Y') }} Garam Nusantara Jepara. All rights reserved.</span>
-            <span>Diproduksi dengan <i data-lucide="heart" class="w-3 h-3 inline text-red-400"></i> di Jepara</span>
+    <div class="border-t border-[var(--border)]">
+        <div class="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-[var(--text-muted)]">
+            <span>&copy; {{ date('Y') }} {{ config('app.name', 'AJ Brand') }}. All rights reserved.</span>
+            <span>Diproduksi dengan <i data-lucide="heart" class="w-3 h-3 inline text-[var(--danger)]"></i> di Jepara</span>
         </div>
     </div>
 </footer>

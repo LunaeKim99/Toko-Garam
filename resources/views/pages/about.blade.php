@@ -4,11 +4,11 @@
 @section('meta_description', 'Kenali lebih dekat Garam Nusantara, produsen garam premium dari Jepara.')
 
 @section('content')
-<section class="relative py-24 bg-gradient-to-br from-dark to-primary/80 overflow-hidden">
+<section class="relative py-24 bg-gradient-to-br from-[var(--text)] to-[var(--primary)]/80 overflow-hidden">
     <div class="absolute inset-0">
         <img src="https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg" class="w-full h-full object-cover" alt="">
     </div>
-    <div class="absolute inset-0 bg-dark/60"></div>
+    <div class="absolute inset-0 bg-[var(--text)]/60"></div>
     <div class="relative container-custom text-center">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">Tentang Kami</h1>
         <div class="flex items-center justify-center gap-2 text-sm text-white/70">
@@ -19,7 +19,7 @@
     </div>
 </section>
 
-<section class="section-padding dark:bg-slate-950 transition-colors duration-300">
+<section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div data-aos="fade-right">
@@ -28,14 +28,14 @@
             </div>
             <div data-aos="fade-left">
                 <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Profil Perusahaan</p>
-                <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-slate-100 transition-colors duration-300">{{ $company?->nama_perusahaan }}</h2>
-                <p class="text-gray-500 dark:text-slate-400 leading-relaxed mb-4 transition-colors duration-300">{{ $company?->tentang }}</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-[var(--text)]">{{ $company?->nama_perusahaan }}</h2>
+                <p class="text-[var(--text-secondary)] leading-relaxed mb-4">{{ $company?->tentang }}</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section-padding bg-light dark:bg-slate-900 transition-colors duration-300">
+<section class="section-padding bg-surface dark:bg-[var(--surface)] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Visi & Misi" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -43,9 +43,9 @@
                 <h3 class="text-xl font-bold mb-4">Visi</h3>
                 <p class="text-white/90 leading-relaxed">{{ $company?->visi }}</p>
             </div>
-            <div class="bg-white dark:bg-slate-900 border border-light-gray dark:border-slate-800 rounded-xl p-8" data-aos="fade-left">
-                <h3 class="text-xl font-bold text-dark dark:text-slate-100 transition-colors duration-300 mb-4">Misi</h3>
-                <div class="space-y-3 text-sm text-gray-600 dark:text-slate-400 transition-colors duration-300">
+            <div class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-8" data-aos="fade-left">
+                <h3 class="text-xl font-bold text-[var(--text)] mb-4">Misi</h3>
+                <div class="space-y-3 text-sm text-[var(--text-secondary)]">
                     @foreach(explode("\n", $company?->misi) as $index => $item)
                         @if(trim($item))
                             <div class="flex items-start gap-3">
@@ -60,17 +60,17 @@
     </div>
 </section>
 
-<section class="section-padding dark:bg-slate-950 transition-colors duration-300">
+<section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom max-w-3xl text-center" data-aos="fade-up">
         <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Sejarah</p>
-        <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-slate-100 transition-colors duration-300 mb-6">Perjalanan Kami</h2>
-        <p class="text-gray-500 dark:text-slate-400 leading-relaxed transition-colors duration-300">
-            Garam Nusantara didirikan dengan visi menghadirkan garam laut berkualitas tinggi dari Jepara, Jawa Tengah. Dimulai dari tambak kecil di pesisir utara Jepara, kami telah berkembang menjadi produsen garam yang dipercaya oleh pelanggan di seluruh Indonesia. Setiap butir garam yang kami hasilkan bercerita tentang dedikasi kami terhadap kualitas, kebersihan, dan keaslian produk laut Jepara.
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--text)] mb-6">Perjalanan Kami</h2>
+        <p class="text-[var(--text-secondary)] leading-relaxed">
+            {{ $company?->sejarah ?? 'Garam Nusantara didirikan dengan visi menghadirkan garam laut berkualitas tinggi dari Jepara, Jawa Tengah. Dimulai dari tambak kecil di pesisir utara Jepara, kami telah berkembang menjadi produsen garam yang dipercaya oleh pelanggan di seluruh Indonesia. Setiap butir garam yang kami hasilkan bercerita tentang dedikasi kami terhadap kualitas, kebersihan, dan keaslian produk laut Jepara.' }}
         </p>
     </div>
 </section>
 
-<section class="section-padding bg-light dark:bg-slate-900 transition-colors duration-300">
+<section class="section-padding bg-surface dark:bg-[var(--surface)] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Nilai Perusahaan" subtitle="Prinsip yang kami pegang" />
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -85,20 +85,20 @@
                 ];
             @endphp
             @foreach($values as $index => $value)
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center border border-light-gray dark:border-slate-800"
+                <div class="bg-[var(--surface)] p-6 rounded-xl shadow-sm-aj hover:shadow-md-aj transition-all duration-300 text-center border border-[var(--border)]"
                     data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                         <i data-lucide="{{ $value['icon'] }}" class="w-6 h-6 text-primary"></i>
                     </div>
-                    <h3 class="font-semibold text-dark dark:text-slate-100 transition-colors duration-300 mb-1">{{ $value['title'] }}</h3>
-                    <p class="text-sm text-gray-500 dark:text-slate-400 transition-colors duration-300">{{ $value['desc'] }}</p>
+                    <h3 class="font-semibold text-[var(--text)] mb-1">{{ $value['title'] }}</h3>
+                    <p class="text-sm text-[var(--text-secondary)]">{{ $value['desc'] }}</p>
                 </div>
             @endforeach
         </div>
     </div>
 </section>
 
-<section class="section-padding dark:bg-slate-950 transition-colors duration-300">
+<section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Timeline Perjalanan" subtitle="Milestone penting kami" />
         <div class="relative max-w-3xl mx-auto">
@@ -119,8 +119,8 @@
                     <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
                         <span class="text-white font-bold text-sm">{{ $item['year'] }}</span>
                     </div>
-                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl shadow-sm flex-1 border border-light-gray dark:border-slate-800">
-                        <p class="text-gray-600 dark:text-slate-400 text-sm transition-colors duration-300">{{ $item['event'] }}</p>
+                    <div class="bg-[var(--surface)] p-5 rounded-xl shadow-sm-aj flex-1 border border-[var(--border)]">
+                        <p class="text-[var(--text-secondary)] text-sm">{{ $item['event'] }}</p>
                     </div>
                 </div>
             @endforeach
@@ -128,7 +128,7 @@
     </div>
 </section>
 
-<section class="section-padding bg-light dark:bg-slate-900 transition-colors duration-300">
+<section class="section-padding bg-surface dark:bg-[var(--surface)] transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Galeri Tambak" subtitle="Dokumentasi aktivitas kami" />
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">

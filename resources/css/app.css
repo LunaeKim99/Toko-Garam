@@ -1,20 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+@import "./theme.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-primary: #0284C7;
-    --color-primary-light: #38BDF8;
-    --color-primary-dark: #0369A1;
-    --color-dark: #0F172A;
-    --color-dark-light: #1E293B;
-    --color-light: #F8FAFC;
-    --color-light-gray: #E2E8F0;
+    --color-primary: var(--primary);
+    --color-primary-light: var(--primary-light);
+    --color-primary-soft: var(--primary-soft);
+    --color-primary-dark: var(--primary-dark);
+    --color-accent: var(--accent);
+    --color-accent-soft: var(--accent-soft);
+    --color-dark: var(--text);
+    --color-dark-light: var(--text-secondary);
+    --color-light: var(--background);
+    --color-light-gray: var(--border);
+    --color-surface: var(--surface);
+    --color-surface-secondary: var(--surface-secondary);
+    --color-surface-hover: var(--surface-hover);
+    --color-text: var(--text);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-border: var(--border);
+    --color-border-strong: var(--border-strong);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-info: var(--info);
+    --color-whatsapp: var(--whatsapp);
+    --color-whatsapp-hover: var(--whatsapp-hover);
     --font-sans: 'Inter', sans-serif;
     --font-heading: 'Sora', sans-serif;
 }
+
+/* AJ brand utility classes using CSS variables */
+@utility bg-surface { background-color: var(--surface) }
+@utility bg-surface-secondary { background-color: var(--surface-secondary) }
+@utility bg-surface-hover { background-color: var(--surface-hover) }
+@utility bg-primary-soft { background-color: var(--primary-soft) }
+@utility bg-accent { background-color: var(--accent) }
+@utility bg-accent-soft { background-color: var(--accent-soft) }
+@utility text-primary-soft { color: var(--primary-soft) }
+@utility border-primary-soft { border-color: var(--primary-soft) }
+@utility border-accent { border-color: var(--accent) }
+@utility shadow-sm-aj { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.1) }
+@utility shadow-md-aj { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) }
+@utility shadow-xl-aj { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) }
 
 @layer base {
     html {
@@ -23,7 +55,9 @@
 
     body {
         font-family: var(--font-sans);
-        @apply text-dark bg-white antialiased;
+        @apply antialiased;
+        background-color: var(--background);
+        color: var(--text);
         overflow-x: hidden;
         transition-property: background-color, color;
         transition-duration: 300ms;
@@ -53,19 +87,48 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary-dark transition-all duration-300 dark:bg-primary dark:hover:bg-primary-light dark:text-slate-950;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-300;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: var(--text);
+        box-shadow: 0 4px 12px var(--primary-light);
+    }
+
+    .btn-primary:hover {
+        filter: brightness(0.92);
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white font-medium rounded-xl hover:bg-white hover:text-dark transition-all duration-300 dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-white;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 font-medium rounded-xl transition-all duration-300;
+        border-color: var(--border);
+        color: var(--text);
+        background: transparent;
+    }
+
+    .btn-outline:hover {
+        background-color: var(--primary-soft);
+        color: var(--primary);
     }
 
     .btn-whatsapp {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-medium rounded-xl hover:bg-green-600 transition-all duration-300;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-300;
+        background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-hover) 100%);
+        color: var(--text);
+        box-shadow: 0 4px 12px var(--whatsapp);
+    }
+
+    .btn-whatsapp:hover {
+        filter: brightness(0.92);
     }
 
     .theme-toggle {
-        @apply relative w-10 h-10 rounded-xl flex items-center justify-center text-current hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300;
+        @apply relative w-10 h-10 rounded-xl flex items-center justify-center text-current transition-all duration-300;
+        background-color: var(--surface);
+        color: var(--text);
+    }
+
+    .theme-toggle:hover {
+        background-color: var(--primary);
+        color: var(--background);
     }
 }
 
@@ -80,12 +143,12 @@
 
 /* Swiper customization */
 .swiper-pagination-bullet-active {
-    @apply !bg-primary;
+    @apply bg-primary!;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-    @apply !text-white;
+    color: var(--text);
 }
 
 /* Fade-in on page load */
@@ -101,10 +164,4 @@ main {
 /* Prevent Alpine-hidden elements from flashing before init */
 [x-cloak] {
     display: none;
-}
-
-.dark {
-    --color-primary: #38BDF8;
-    --color-primary-light: #7DD3FC;
-    --color-primary-dark: #0EA5E9;
 }

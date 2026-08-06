@@ -1,4 +1,4 @@
-<section class="section-padding bg-light dark:bg-slate-900 transition-colors duration-300">
+<section class="section-padding bg-surface transition-colors duration-300">
     <div class="container-custom">
         <x-section-heading title="Keunggulan Produk" subtitle="Kualitas Terjamin" />
 
@@ -13,13 +13,13 @@
             @endphp
 
             @foreach($advantages as $index => $item)
-                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center border border-light-gray dark:border-slate-800"
+                <div class="bg-[var(--surface)] dark:bg-[var(--surface)] rounded-xl shadow-sm-aj hover:shadow-md-aj transition-all duration-300 p-6 text-center border border-[var(--border)]"
                     data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="{{ $item['icon'] }}" class="w-7 h-7 text-primary"></i>
                     </div>
-                    <h3 class="font-semibold text-dark dark:text-slate-100 mb-2 transition-colors duration-300">{{ $item['title'] }}</h3>
-                    <p class="text-sm text-gray-500 dark:text-slate-400 leading-relaxed transition-colors duration-300">{{ $item['desc'] }}</p>
+                    <h3 class="font-semibold text-[var(--text)] mb-2 transition-colors duration-300">{{ $item['title'] }}</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed transition-colors duration-300">{{ $item['desc'] }}</p>
                 </div>
             @endforeach
         </div>

@@ -14,16 +14,16 @@
         </div>
     </div>
 
-    <div class="absolute inset-0 z-10 bg-gradient-to-r from-dark/90 via-dark/70 to-primary/50 dark:from-dark/90 dark:via-dark/80 dark:to-primary/60"></div>
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-[var(--background)]/90 via-[var(--background)]/70 to-[var(--primary)]/50"></div>
 
     <div class="relative z-20 container-custom py-16">
         <div class="max-w-2xl">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4 transition-colors duration-300"
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-tight mb-3 sm:mb-4 transition-colors duration-300"
                 data-aos="fade-up">
                 Garam Jepara Asli,<br>
-                <span class="text-primary-light">Diproduksi Langsung dari Tambak Kami</span>
+                <span class="text-primary">Diproduksi Langsung dari Tambak Kami</span>
             </h1>
-            <p class="text-base sm:text-lg text-gray-200 dark:text-gray-300 mb-4 sm:mb-6 max-w-lg transition-colors duration-300"
+            <p class="text-base sm:text-lg text-[var(--text-secondary)] mb-4 sm:mb-6 max-w-lg transition-colors duration-300"
                 data-aos="fade-up" data-aos-delay="100">
                 Garam laut berkualitas tinggi yang diproduksi secara tradisional dan higienis dari tambak garam di pesisir Jepara, Jawa Tengah.
             </p>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <a href="#keunggulan" class="text-white/70 hover:text-white transition-colors duration-300">
+        <a href="#keunggulan" class="text-[var(--text-secondary)] hover:text-primary transition-colors duration-300">
             <i data-lucide="chevrons-down" class="w-6 h-6"></i>
         </a>
     </div>
