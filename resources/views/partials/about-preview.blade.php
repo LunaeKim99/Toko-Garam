@@ -12,7 +12,7 @@
                     Produsen Garam Lokal dari Jepara
                 </h2>
                 <p class="text-gray-500 leading-relaxed mb-4">
-                    {{ Str::limit($company->tentang ?? 'Garam Nusantara memproduksi garam premium langsung dari tambak di Jepara.', 200) }}
+                    {{ Str::limit($company?->tentang ?? 'Garam Nusantara memproduksi garam premium langsung dari tambak di Jepara.', 200) }}
                 </p>
 
                 <div class="grid grid-cols-3 gap-4 mb-6">
