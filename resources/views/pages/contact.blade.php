@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-dark text-sm mb-1">Alamat</h3>
-                            <p class="text-gray-500 text-sm">{{ $company->alamat }}</p>
+                            <p class="text-gray-500 text-sm">{{ $company?->alamat }}</p>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                         <div>
                             <h3 class="font-semibold text-dark text-sm mb-1">WhatsApp</h3>
                             <a href="https://wa.me/{{ $product?->whatsapp ?? '6281234567890' }}" target="_blank" class="text-green-500 text-sm hover:underline">
-                                {{ $company->telepon }}
+                                {{ $company?->telepon }}
                             </a>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-dark text-sm mb-1">Email</h3>
-                            <p class="text-gray-500 text-sm">{{ $company->email }}</p>
+                            <p class="text-gray-500 text-sm">{{ $company?->email }}</p>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
 
         <div class="mt-12 rounded-xl overflow-hidden shadow-sm" data-aos="fade-up">
             <iframe
-                src="https://www.google.com/maps?q={{ $company->maps_lat ?? -6.666499428336486 }},{{ $company->maps_lng ?? 110.64402441302167 }}&output=embed"
+                src="https://www.google.com/maps?q={{ $company?->maps_lat ?? -6.666499428336486 }},{{ $company?->maps_lng ?? 110.64402441302167 }}&output=embed"
                 width="100%"
                 height="400"
                 style="border:0;"

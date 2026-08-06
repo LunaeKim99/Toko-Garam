@@ -15,7 +15,7 @@
     <div class="space-y-5">
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Nama Perusahaan</label>
-            <input type="text" name="nama_perusahaan" value="{{ old('nama_perusahaan', $company->nama_perusahaan) }}" required
+            <input type="text" name="nama_perusahaan" value="{{ old('nama_perusahaan', $company?->nama_perusahaan) }}" required
                 class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
             @error('nama_perusahaan') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
@@ -23,41 +23,41 @@
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Tentang Perusahaan</label>
             <textarea name="tentang" rows="5" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('tentang', $company->tentang) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('tentang', $company?->tentang) }}</textarea>
             @error('tentang') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Visi</label>
             <textarea name="visi" rows="3" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('visi', $company->visi) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('visi', $company?->visi) }}</textarea>
             @error('visi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Misi (satu baris per misi)</label>
             <textarea name="misi" rows="5" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('misi', $company->misi) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('misi', $company?->misi) }}</textarea>
             @error('misi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Alamat</label>
             <textarea name="alamat" rows="2" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('alamat', $company->alamat) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('alamat', $company?->alamat) }}</textarea>
             @error('alamat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Telepon</label>
-                <input type="text" name="telepon" value="{{ old('telepon', $company->telepon) }}" required
+                <input type="text" name="telepon" value="{{ old('telepon', $company?->telepon) }}" required
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('telepon') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Email</label>
-                <input type="email" name="email" value="{{ old('email', $company->email) }}" required
+                <input type="email" name="email" value="{{ old('email', $company?->email) }}" required
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
@@ -73,14 +73,14 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Google Maps Latitude</label>
-                <input type="text" step="any" name="maps_lat" value="{{ old('maps_lat', $company->maps_lat) }}"
+                <input type="text" step="any" name="maps_lat" value="{{ old('maps_lat', $company?->maps_lat) }}"
                     placeholder="contoh: -6.666499428336486"
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('maps_lat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Google Maps Longitude</label>
-                <input type="text" step="any" name="maps_lng" value="{{ old('maps_lng', $company->maps_lng) }}"
+                <input type="text" step="any" name="maps_lng" value="{{ old('maps_lng', $company?->maps_lng) }}"
                     placeholder="contoh: 110.64402441302167"
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('maps_lng') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror

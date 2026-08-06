@@ -16,13 +16,13 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Nama Produk</label>
-                <input type="text" name="nama" value="{{ old('nama', $product->nama) }}" required
+                <input type="text" name="nama" value="{{ old('nama', $product?->nama) }}" required
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('nama') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-medium text-dark mb-1.5">Berat</label>
-                <input type="text" name="berat" value="{{ old('berat', $product->berat) }}" required placeholder="contoh: 1 kg"
+                <input type="text" name="berat" value="{{ old('berat', $product?->berat) }}" required placeholder="contoh: 1 kg"
                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
                 @error('berat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
@@ -31,14 +31,14 @@
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Deskripsi</label>
             <textarea name="deskripsi" rows="4" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('deskripsi', $product->deskripsi) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('deskripsi', $product?->deskripsi) }}</textarea>
             @error('deskripsi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Spesifikasi</label>
             <div id="spesifikasi-fields" class="space-y-3">
-                @foreach($product->spesifikasi ?? [] as $key => $value)
+                @foreach($product?->spesifikasi ?? [] as $key => $value)
                     <div class="grid grid-cols-12 gap-2 items-center">
                         <input type="text" name="spesifikasi_key[]" value="{{ old('spesifikasi_key.' . $loop->index, $key) }}"
                             placeholder="Nama spesifikasi (contoh: Jenis)"
@@ -64,7 +64,7 @@
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Keunggulan (satu baris per item)</label>
             <textarea name="keunggulan" rows="4"
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('keunggulan', is_array($product->keunggulan) ? implode("\n", $product->keunggulan) : '') }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('keunggulan', is_array($product?->keunggulan) ? implode("\n", $product?->keunggulan) : '') }}</textarea>
             <p class="text-xs text-gray-400 mt-1">Pisahkan setiap keunggulan dengan enter (satu baris per item)</p>
             @error('keunggulan') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
@@ -72,7 +72,7 @@
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Manfaat (satu baris per item)</label>
             <textarea name="manfaat" rows="4"
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('manfaat', is_array($product->manfaat) ? implode("\n", $product->manfaat) : '') }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('manfaat', is_array($product?->manfaat) ? implode("\n", $product?->manfaat) : '') }}</textarea>
             <p class="text-xs text-gray-400 mt-1">Pisahkan setiap manfaat dengan enter (satu baris per item)</p>
             @error('manfaat') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
@@ -80,13 +80,13 @@
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Cara Penyimpanan</label>
             <textarea name="penyimpanan" rows="3" required
-                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('penyimpanan', $product->penyimpanan) }}</textarea>
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('penyimpanan', $product?->penyimpanan) }}</textarea>
             @error('penyimpanan') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-medium text-dark mb-1.5">Nomor WhatsApp (tanpa +)</label>
-            <input type="text" name="whatsapp" value="{{ old('whatsapp', $product->whatsapp) }}" required placeholder="contoh: 6281234567890"
+            <input type="text" name="whatsapp" value="{{ old('whatsapp', $product?->whatsapp) }}" required placeholder="contoh: 6281234567890"
                 class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
             @error('whatsapp') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>

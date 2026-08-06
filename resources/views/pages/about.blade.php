@@ -26,8 +26,8 @@
             </div>
             <div data-aos="fade-left">
                 <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Profil Perusahaan</p>
-                <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white transition-colors duration-300">{{ $company->nama_perusahaan }}</h2>
-                <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4 transition-colors duration-300">{{ $company->tentang }}</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white transition-colors duration-300">{{ $company?->nama_perusahaan }}</h2>
+                <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4 transition-colors duration-300">{{ $company?->tentang }}</p>
             </div>
         </div>
     </div>
@@ -39,12 +39,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div class="bg-primary rounded-xl p-8 text-white" data-aos="fade-right">
                 <h3 class="text-xl font-bold mb-4">Visi</h3>
-                <p class="text-white/90 leading-relaxed">{{ $company->visi }}</p>
+                <p class="text-white/90 leading-relaxed">{{ $company?->visi }}</p>
             </div>
             <div class="bg-white dark:bg-[#0F172A] border border-light-gray dark:border-[#1E293B] rounded-xl p-8" data-aos="fade-left">
                 <h3 class="text-xl font-bold text-dark dark:text-white transition-colors duration-300 mb-4">Misi</h3>
                 <div class="space-y-3 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                    @foreach(explode("\n", $company->misi) as $index => $item)
+                    @foreach(explode("\n", $company?->misi) as $index => $item)
                         @if(trim($item))
                             <div class="flex items-start gap-3">
                                 <span class="flex-shrink-0 w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-xs font-bold">{{ $index + 1 }}</span>
@@ -62,7 +62,7 @@
     <div class="container-custom max-w-3xl text-center" data-aos="fade-up">
         <p class="text-primary font-medium text-sm uppercase tracking-wider mb-2">Sejarah</p>
         <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white transition-colors duration-300 mb-6">Perjalanan Kami</h2>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed transition-colors duration-300">{{ $company->tentang }}</p>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed transition-colors duration-300">{{ $company?->tentang }}</p>
     </div>
 </section>
 
