@@ -33,18 +33,18 @@
 </script>
 @endpush
 
-<section class="section-padding dark:bg-[#020617] transition-colors duration-300" x-data="gallery()">
+<section class="section-padding dark:bg-slate-950 transition-colors duration-300" x-data="gallery()">
     <div class="container-custom">
         <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
             <button @click="activeFilter = categories[0]"
-                :class="activeFilter === categories[0] ? 'bg-primary text-white' : 'bg-white text-dark dark:bg-[#0F172A] dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-white/10'"
-                class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray dark:border-[#1E293B]">
+                :class="activeFilter === categories[0] ? 'bg-primary text-white' : 'bg-white text-dark dark:bg-slate-900 dark:text-slate-300 hover:bg-primary/10 dark:hover:bg-white/10'"
+                class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray dark:border-slate-800">
                 Semua
             </button>
             @foreach($categories as $index => $cat)
                 <button @click="activeFilter = categories[{{ $index + 1 }}]"
-                    :class="activeFilter === categories[{{ $index + 1 }}] ? 'bg-primary text-white' : 'bg-white text-dark dark:bg-[#0F172A] dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-white/10'"
-                    class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray dark:border-[#1E293B]">
+                    :class="activeFilter === categories[{{ $index + 1 }}] ? 'bg-primary text-white' : 'bg-white text-dark dark:bg-slate-900 dark:text-slate-300 hover:bg-primary/10 dark:hover:bg-white/10'"
+                    class="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border border-light-gray dark:border-slate-800">
                     {{ $cat }}
                 </button>
             @endforeach
@@ -59,7 +59,7 @@
                     x-transition:leave="transition ease-in duration-200"
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-95">
-                    <div class="bg-white dark:bg-[#0F172A] rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                    <div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
                         @click="lightboxOpen = true; lightboxImg = items[{{ $index }}].gambar; lightboxTitle = items[{{ $index }}].judul">
                         <div class="overflow-hidden">
                             <img src="{{ $gallery->gambar }}" alt="{{ $gallery->judul }}"
@@ -67,7 +67,7 @@
                         </div>
                         <div class="p-4">
                             <span class="text-primary text-xs font-medium">{{ $gallery->kategori }}</span>
-                            <h3 class="font-semibold text-dark dark:text-white text-sm mt-1 transition-colors duration-300">{{ $gallery->judul }}</h3>
+                            <h3 class="font-semibold text-dark dark:text-slate-100 text-sm mt-1 transition-colors duration-300">{{ $gallery->judul }}</h3>
                         </div>
                     </div>
                 </div>

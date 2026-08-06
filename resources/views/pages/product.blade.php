@@ -30,14 +30,14 @@
 
             <div data-aos="fade-left">
                 <span class="text-primary font-medium text-sm">{{ $product?->berat }}</span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark mb-4 mt-1">{{ $product?->nama }}</h2>
-                <p class="text-gray-500 leading-relaxed mb-6">{{ $product?->deskripsi }}</p>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark dark:text-slate-100 mb-4 mt-1">{{ $product?->nama }}</h2>
+                <p class="text-gray-500 dark:text-slate-400 leading-relaxed mb-6">{{ $product?->deskripsi }}</p>
 
                 <div class="mb-6">
-                    <h3 class="font-semibold text-dark mb-3">Keunggulan</h3>
+                    <h3 class="font-semibold text-dark dark:text-slate-100 mb-3">Keunggulan</h3>
                     <ul class="space-y-2">
                         @foreach($product?->keunggulan ?? [] as $item)
-                            <li class="flex items-start gap-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                                 <i data-lucide="check-circle" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                                 {{ $item }}
                             </li>
@@ -46,10 +46,10 @@
                 </div>
 
                 <div class="mb-6">
-                    <h3 class="font-semibold text-dark mb-3">Manfaat</h3>
+                    <h3 class="font-semibold text-dark dark:text-slate-100 mb-3">Manfaat</h3>
                     <ul class="space-y-2">
                         @foreach($product?->manfaat ?? [] as $item)
-                            <li class="flex items-start gap-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0"></i>
                                 {{ $item }}
                             </li>
@@ -67,47 +67,47 @@
     </div>
 </section>
 
-<section class="section-padding bg-light">
+<section class="section-padding bg-light dark:bg-slate-900">
     <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-right">
-                <h3 class="font-bold text-dark text-lg mb-4">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm" data-aos="fade-right">
+                <h3 class="font-bold text-dark dark:text-slate-100 text-lg mb-4">
                     <i data-lucide="settings" class="w-5 h-5 text-primary inline"></i>
                     Spesifikasi
                 </h3>
                 <div class="space-y-3">
                     @foreach($product?->spesifikasi as $key => $value)
-                        <div class="flex justify-between text-sm border-b border-light-gray pb-2">
-                            <span class="text-gray-500">{{ $key }}</span>
-                            <span class="font-medium text-dark">{{ $value }}</span>
+                        <div class="flex justify-between text-sm border-b border-light-gray dark:border-slate-800 pb-2">
+                            <span class="text-gray-500 dark:text-slate-400">{{ $key }}</span>
+                            <span class="font-medium text-dark dark:text-slate-100">{{ $value }}</span>
                         </div>
                     @endforeach
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-left">
-                <h3 class="font-bold text-dark text-lg mb-4">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm" data-aos="fade-left">
+                <h3 class="font-bold text-dark dark:text-slate-100 text-lg mb-4">
                     <i data-lucide="info" class="w-5 h-5 text-primary inline"></i>
                     Cara Penyimpanan
                 </h3>
-                <p class="text-sm text-gray-500 leading-relaxed">{{ $product?->penyimpanan }}</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400 leading-relaxed">{{ $product?->penyimpanan }}</p>
 
-                <div class="mt-6 p-4 bg-primary/5 rounded-lg">
-                    <h4 class="font-semibold text-dark text-sm mb-2">Kenapa Memilih Garam Kami?</h4>
+                <div class="mt-6 p-4 bg-primary/5 dark:bg-primary/10 rounded-lg">
+                    <h4 class="font-semibold text-dark dark:text-slate-100 text-sm mb-2">Kenapa Memilih Garam Kami?</h4>
                     <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-sm text-gray-600">
+                        <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                             <i data-lucide="check" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                             Diproduksi langsung dari tambak sendiri
                         </li>
-                        <li class="flex items-start gap-2 text-sm text-gray-600">
+                        <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                             <i data-lucide="check" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                             Proses penjemuran alami 100%
                         </li>
-                        <li class="flex items-start gap-2 text-sm text-gray-600">
+                        <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                             <i data-lucide="check" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                             Tanpa bahan kimia berbahaya
                         </li>
-                        <li class="flex items-start gap-2 text-sm text-gray-600">
+                        <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-slate-300">
                             <i data-lucide="check" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
                             Kaya mineral alami dari laut Jepara
                         </li>
@@ -132,15 +132,15 @@
 
         <div class="space-y-4">
             @foreach($faqs as $index => $faq)
-                <div class="bg-white border border-light-gray rounded-xl overflow-hidden" data-aos="fade-up">
+                <div class="bg-white dark:bg-slate-900 border border-light-gray dark:border-slate-800 rounded-xl overflow-hidden" data-aos="fade-up">
                     <button @click="faqOpen === {{ $index }} ? faqOpen = null : faqOpen = {{ $index }}"
                         class="w-full flex items-center justify-between p-5 text-left">
-                        <span class="font-medium text-dark text-sm pr-4">{{ $faq['q'] }}</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300"
+                        <span class="font-medium text-dark dark:text-slate-100 text-sm pr-4">{{ $faq['q'] }}</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 dark:text-slate-500 flex-shrink-0 transition-transform duration-300"
                             :class="faqOpen === {{ $index }} ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="faqOpen === {{ $index }}" x-cloak x-collapse class="px-5 pb-5">
-                        <p class="text-sm text-gray-500 leading-relaxed">{{ $faq['a'] }}</p>
+                        <p class="text-sm text-gray-500 dark:text-slate-400 leading-relaxed">{{ $faq['a'] }}</p>
                     </div>
                 </div>
             @endforeach
