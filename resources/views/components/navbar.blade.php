@@ -23,6 +23,7 @@
                         ['route' => 'gallery', 'label' => 'Galeri', 'url' => route('gallery')],
                         ['route' => 'contact', 'label' => 'Kontak', 'url' => route('contact')],
                     ];
+                    $product = \App\Models\Product::first();
                 @endphp
 
                 @foreach($navLinks as $link)
@@ -35,7 +36,7 @@
                     </a>
                 @endforeach
 
-                @if($product = \App\Models\Product::first())
+                @if($product)
                     <a href="https://wa.me/{{ $product->whatsapp }}" target="_blank" class="btn-primary text-sm !py-2 !px-5">
                         Hubungi Kami
                     </a>
@@ -73,7 +74,7 @@
                     {{ $link['label'] }}
                 </a>
             @endforeach
-            @if($product = \App\Models\Product::first())
+            @if($product)
                 <a href="https://wa.me/{{ $product->whatsapp }}" target="_blank" @click="mobileOpen = false"
                     class="block btn-primary text-center mt-3">
                     Hubungi Kami
