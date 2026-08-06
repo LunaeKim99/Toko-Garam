@@ -53,12 +53,55 @@ class PageController extends Controller
 
     public function products()
     {
-        return view('pages.products');
+        $products = [
+            ['slug' => 'garam-halus-premium-1kg', 'name' => 'Garam Halus Premium 1kg', 'category' => 'Garam Halus', 'weight' => '1 kg', 'description' => 'Garam halus berukuran seragam untuk kebutuhan dapur dan industri makanan.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
+            ['slug' => 'garam-halus-premium-5kg', 'name' => 'Garam Halus Premium 5kg', 'category' => 'Garam Halus', 'weight' => '5 kg', 'description' => 'Kemasan ekonomis untuk usaha kuliner dan industri skala menengah.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
+            ['slug' => 'garam-kasar-industri-25kg', 'name' => 'Garam Kasar Industri 25kg', 'category' => 'Garam Kasar', 'weight' => '25 kg', 'description' => 'Garam kasar untuk proses pengolahan industri, konstruksi, dan pertambakan.', 'image' => 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600'],
+            ['slug' => 'garam-krosok-murni-5kg', 'name' => 'Garam Krosok Murni 5kg', 'category' => 'Garam Krosok', 'weight' => '5 kg', 'description' => 'Garam krosok asli tambak untuk keperluan pengasinan dan konsumsi.', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
+            ['slug' => 'garam-industri-50kg', 'name' => 'Garam Industri 50kg', 'category' => 'Garam Industri', 'weight' => '50 kg', 'description' => 'Garam bersih untuk kebutuhan industri kimia dan farmasi.', 'image' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600'],
+            ['slug' => 'garam-meja-500g', 'name' => 'Garam Meja 500g', 'category' => 'Garam Halus', 'weight' => '500 g', 'description' => 'Garam meja beriodium untuk konsumsi rumah tangga.', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
+        ];
+
+        $categories = ['Semua', 'Garam Halus', 'Garam Kasar', 'Garam Krosok', 'Garam Industri'];
+
+        return view('pages.products', compact('products', 'categories'));
     }
 
     public function productDetail(string $slug)
     {
-        return view('pages.product-detail', compact('slug'));
+        $product = [
+            'slug' => $slug,
+            'name' => 'Garam Halus Premium 1kg',
+            'category' => 'Garam Halus',
+            'weight' => '1 kg',
+            'description' => 'Garam halus premium diproses dari air laut murni menggunakan teknologi modern. Ukuran kristal seragam, cocok untuk kebutuhan dapur rumah tangga maupun industri makanan. Beapat bahan pengawet dan pewarna buatan.',
+            'specifications' => [
+                'Jenis' => 'Garam Halus',
+                'Kemasan' => 'Plastik kedap udara',
+                'Berat Bersih' => '1 kg',
+                'Sertifikasi' => 'ISO 22000, Halal MUI',
+                'Umur Simpan' => '24 bulan',
+            ],
+            'benefits' => [
+                'Tinggi mineral alami (natrium, kalsium, magnesium)',
+                'Tanpa bahan pengawet',
+                'Cocok untuk semua jenis masakan',
+                'Kristal halus, mudah larut',
+                'Kemasan kedap udara menjaga kesegaran',
+            ],
+            'gallery' => [
+                'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=800',
+                'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800',
+                'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=800',
+            ],
+            'related' => [
+                ['slug' => 'garam-halus-premium-5kg', 'name' => 'Garam Halus Premium 5kg', 'category' => 'Garam Halus', 'weight' => '5 kg', 'description' => 'Kemasan ekonomis untuk usaha kuliner.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
+                ['slug' => 'garam-krosok-murni-5kg', 'name' => 'Garam Krosok Murni 5kg', 'category' => 'Garam Krosok', 'weight' => '5 kg', 'description' => 'Garam krosok asli tambak.', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
+                ['slug' => 'garam-meja-500g', 'name' => 'Garam Meja 500g', 'category' => 'Garam Halus', 'weight' => '500 g', 'description' => 'Garam meja beriodium.', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
+            ],
+        ];
+
+        return view('pages.product-detail', compact('product', 'slug'));
     }
 
     public function articles()
