@@ -1,17 +1,16 @@
 <section class="section-padding bg-light">
     <div class="container-custom">
-        <x-section-heading title="Proses Produksi" subtitle="Dari Tambak ke Meja Anda" />
+        <x-section-heading title="Proses Produksi" subtitle="Dari Tambak Jepara ke Meja Anda" />
 
         <div class="relative max-w-3xl mx-auto">
-            {{-- Vertical Line --}}
             <div class="hidden sm:block absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2"></div>
 
             @php
                 $steps = [
-                    ['number' => '01', 'icon' => 'droplets', 'title' => 'Penguapan Air Laut', 'desc' => 'Air laut dipompa ke tambak dan dipanaskan matahari hingga mengkristal.'],
-                    ['number' => '02', 'icon' => 'gem', 'title' => 'Kristalisasi Garam', 'desc' => 'Kristal garam terbentuk dan dipisahkan dari larutan sisa.'],
-                    ['number' => '03', 'icon' => 'sparkles', 'title' => 'Pengolahan & Pencucian', 'desc' => 'Garam dicuci dan difermentasi untuk menghilangkan kotoran.'],
-                    ['number' => '04', 'icon' => 'package', 'title' => 'Pengemasan & Distribusi', 'desc' => 'Garam dikemas sesuai standar dan siap didistribusikan ke seluruh Indonesia.'],
+                    ['number' => '01', 'icon' => 'sun', 'title' => 'Penjemuran', 'desc' => 'Garam dijemur secara alami di bawah sinar matahari pesisir Jepara hingga mengkristal sempurna.'],
+                    ['number' => '02', 'icon' => 'hand', 'title' => 'Pemanenan', 'desc' => 'Kristal garam dipanen langsung dari tambak oleh petani garam berpengalaman.'],
+                    ['number' => '03', 'icon' => 'filter', 'title' => 'Penyortiran', 'desc' => 'Garam disortir berdasarkan ukuran dan kualitas untuk memastikan keseragaman kristal.'],
+                    ['number' => '04', 'icon' => 'package-check', 'title' => 'Pengemasan', 'desc' => 'Garam dikemas dalam kemasan kedap udara menjaga kesegaran hingga ke tangan Anda.'],
                 ];
             @endphp
 
@@ -19,12 +18,10 @@
                 <div class="relative flex items-start gap-6 sm:gap-8 mb-10 last:mb-0"
                     data-aos="fade-up" data-aos-delay="{{ $index * 150 }}">
 
-                    {{-- Number Badge --}}
                     <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
                         <span class="text-white font-bold text-lg">{{ $step['number'] }}</span>
                     </div>
 
-                    {{-- Content --}}
                     <div class="bg-white p-5 rounded-xl shadow-sm flex-1">
                         <div class="flex items-center gap-2 mb-2">
                             <i data-lucide="{{ $step['icon'] }}" class="w-5 h-5 text-primary"></i>

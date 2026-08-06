@@ -1,14 +1,14 @@
-<section id="features" class="section-padding bg-light">
+<section id="keunggulan" class="section-padding bg-light">
     <div class="container-custom">
-        <x-section-heading title="Mengapa Memilih Kami" subtitle="Keunggulan" />
+        <x-section-heading title="Keunggulan Kami" subtitle="Mengapa Memilih Garam Nusantara" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @php
                 $features = [
-                    ['icon' => 'badge-check', 'title' => 'Produk Berkualitas', 'desc' => 'Garam diproses dengan standar ISO untuk menjamin mutu terbaik.'],
-                    ['icon' => 'shield-check', 'title' => 'Higienis', 'desc' => 'Diproses di fasilitas bersertifikat dengan kontrol kualitas ketat.'],
-                    ['icon' => 'truck', 'title' => 'Distribusi Cepat', 'desc' => 'Jaringan distribusi luas ke seluruh wilayah Indonesia.'],
-                    ['icon' => 'tag', 'title' => 'Harga Kompetitif', 'desc' => 'Harga terjangkau tanpa mengorbankan kualitas produk.'],
+                    ['icon' => 'factory', 'title' => 'Garam Produksi Sendiri', 'desc' => 'Diproduksi langsung dari tambak kami sendiri tanpa perantara.'],
+                    ['icon' => 'map-pin', 'title' => 'Dipanen dari Tambak Jepara', 'desc' => 'Berasal dari pesisir utara Jepara dengan air laut yang jernih.'],
+                    ['icon' => 'shield-check', 'title' => 'Proses Higienis', 'desc' => 'Diproses dengan standar higienis dan pengawasan kualitas ketat.'],
+                    ['icon' => 'badge-check', 'title' => 'Kualitas Terjaga', 'desc' => 'Setiap butir garam melalui proses penjemuran dan sortir terbaik.'],
                 ];
             @endphp
 

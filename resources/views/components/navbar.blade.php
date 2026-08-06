@@ -5,7 +5,6 @@
 
     <div class="container-custom">
         <nav class="flex items-center justify-between h-16 lg:h-20">
-            {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                     <span class="text-white font-bold text-sm">GN</span>
@@ -15,14 +14,13 @@
                 </span>
             </a>
 
-            {{-- Desktop Nav --}}
             <div class="hidden lg:flex items-center gap-8">
                 @php
                     $navLinks = [
                         ['route' => 'home', 'label' => 'Home', 'url' => route('home')],
                         ['route' => 'about', 'label' => 'Tentang Kami', 'url' => route('about')],
-                        ['route' => 'products', 'label' => 'Produk', 'url' => route('products')],
-                        ['route' => 'articles', 'label' => 'Artikel', 'url' => route('articles')],
+                        ['route' => 'product', 'label' => 'Produk', 'url' => route('product')],
+                        ['route' => 'gallery', 'label' => 'Galeri', 'url' => route('gallery')],
                         ['route' => 'contact', 'label' => 'Kontak', 'url' => route('contact')],
                     ];
                 @endphp
@@ -37,12 +35,13 @@
                     </a>
                 @endforeach
 
-                <a href="{{ route('contact') }}" class="btn-primary text-sm !py-2 !px-5">
-                    Hubungi Kami
-                </a>
+                @if($product = \App\Models\Product::first())
+                    <a href="https://wa.me/{{ $product->whatsapp }}" target="_blank" class="btn-primary text-sm !py-2 !px-5">
+                        Hubungi Kami
+                    </a>
+                @endif
             </div>
 
-            {{-- Mobile Hamburger --}}
             <button @click="mobileOpen = !mobileOpen"
                 class="lg:hidden p-2 rounded-lg"
                 :class="scrolled ? 'text-dark' : 'text-white'">
@@ -56,7 +55,6 @@
         </nav>
     </div>
 
-    {{-- Mobile Menu --}}
     <div x-show="mobileOpen" x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 -translate-y-2"
         x-transition:enter-end="opacity-100 translate-y-0"
@@ -75,10 +73,12 @@
                     {{ $link['label'] }}
                 </a>
             @endforeach
-            <a href="{{ route('contact') }}" @click="mobileOpen = false"
-                class="block btn-primary text-center mt-3">
-                Hubungi Kami
-            </a>
+            @if($product = \App\Models\Product::first())
+                <a href="https://wa.me/{{ $product->whatsapp }}" target="_blank" @click="mobileOpen = false"
+                    class="block btn-primary text-center mt-3">
+                    Hubungi Kami
+                </a>
+            @endif
         </div>
     </div>
 </header>
