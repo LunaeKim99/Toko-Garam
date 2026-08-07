@@ -239,6 +239,8 @@ Upload gambar galeri disimpan di `storage/app/public/`, diakses via symlink `pub
 Wajib pasang **persistent volume** di Railway dan mount ke `/data` agar file `database.sqlite` persisten antar deploy.
 Tanpa volume, migrasi gagal karena file DB tidak ditemukan.
 
+**PHP extensions** — diekstrak dari `composer.json` (`ext-*`). Untuk ekstensi non-standar seperti Redis, set env Railway: `RAILPACK_PHP_EXTENSIONS=redis`.
+
 ## Lisensi
 
 MIT — silakan digunakan dan dimodifikasi secara bebas.
