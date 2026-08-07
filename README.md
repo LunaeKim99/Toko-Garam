@@ -8,9 +8,9 @@
   <img src="https://img.shields.io/badge/Breeze-auth-FF2D20" alt="Breeze auth">
 </p>
 
-# Garam Nusantara — Company Profile Website
+# AlfaJaya Garam — Company Profile Website
 
-Website profil perusahaan **Garam Nusantara**, produsen garam premium langsung dari tambak di Jepara, Jawa Tengah. Dibangun dengan **Laravel 13 + Blade + Tailwind CSS v4 + Alpine.js**, mobile-first. Konten bersifat **database-driven** (SQLite default, dapat diganti MySQL/Postgres) dengan **admin panel** berbasis Breeze untuk mengelola profil perusahaan, produk tunggal, dan galeri.
+Website profil perusahaan **AlfaJaya Garam**, produsen garam premium langsung dari tambak di Jepara, Jawa Tengah. Dibangun dengan **Laravel 13 + Blade + Tailwind CSS v4 + Alpine.js**, mobile-first. Konten bersifat **database-driven** (SQLite default, dapat diganti MySQL/Postgres) dengan **admin panel** berbasis Breeze untuk mengelola profil perusahaan, produk, dan galeri.
 
 ## Fitur
 
@@ -18,18 +18,21 @@ Website profil perusahaan **Garam Nusantara**, produsen garam premium langsung d
 - **Konten database-driven** via Eloquent (`CompanyProfile`, `Product`, `Gallery`) dengan null-safe guards
 - **Admin panel** berbasis Breeze (auth + CRUD):
   - Edit profil perusahaan (`/admin/profil/edit`)
-  - Edit produk tunggal (`/admin/produk/edit`)
+  - Edit produk (`/admin/produk/edit`)
   - Kelola galeri — create/read/update/delete (`/admin/galeri`)
 - **Galeri** dengan filter kategori + lightbox (Alpine `x-collapse`)
 - **FAQ accordion** pada halaman produk (Alpine `x-collapse`)
 - **Tombol WhatsApp** langsung ke pemesanan
 - **Animasi scroll** dengan AOS (otomatis nonaktif di mobile ≤768px)
 - **Slider testimoni** dengan Swiper.js
+- **Dark mode** dengan global Alpine theme store (class-based, persist di localStorage)
+- **Google Maps** embed dengan koordinat configurable (`maps_lat`, `maps_lng`)
 - **Ikon** Lucide
 - **SEO-ready**: title, meta description, dan Open Graph per halaman
 - **Responsive mobile-first** (375px s/d 1920px)
-- **Tema warna & font terpusat** di satu file CSS (Tailwind `@theme`)
+- **Tema warna & font terpusat** di satu file CSS (Tailwind `@theme` + AJ brand color system)
 - **Test suite** (34 tests) — publik + admin + Breeze auth
+- **Deployment**: Dockerfile + Nixpacks untuk Railway/Render
 
 ## Halaman Publik
 
@@ -37,7 +40,7 @@ Website profil perusahaan **Garam Nusantara**, produsen garam premium langsung d
 |---|---|---|
 | Beranda | `/` | Hero, keunggulan, preview tentang, produk unggulan, proses produksi, testimoni, CTA |
 | Tentang Kami | `/tentang` | Profil, sejarah, visi-misi, nilai, timeline, galeri |
-| Produk | `/produk` | Produk tunggal: spesifikasi, manfaat, keunggulan, FAQ, tombol WhatsApp |
+| Produk | `/produk` | Katalog produk: spesifikasi, manfaat, keunggulan, FAQ, tombol WhatsApp |
 | Galeri | `/galeri` | Grid galeri + filter kategori + lightbox |
 | Kontak | `/kontak` | Info kontak, form pesan, Google Maps |
 
@@ -48,8 +51,8 @@ Semua route admin berada di prefix `/admin` dengan middleware `auth`.
 | Halaman | Route | Keterangan |
 |---|---|---|
 | Dashboard | `/admin/dashboard` | Ringkasan 3 kartu (profil, produk, galeri) |
-| Edit Profil | `/admin/profil/edit` | Form edit profil perusahaan |
-| Edit Produk | `/admin/produk/edit` | Form edit produk tunggal |
+| Edit Profil | `/admin/profil/edit` | Form edit profil perusahaan (termasuk koordinat maps) |
+| Edit Produk | `/admin/produk/edit` | Form edit produk |
 | Galeri | `/admin/galeri` | Resource CRUD galeri (index, create, edit, delete) |
 
 Login admin: `/login`. Breeze juga menyediakan `/dashboard` dan `/profile` untuk scaffold standar.
@@ -59,8 +62,8 @@ Login admin: `/login`. Breeze juga menyediakan `/dashboard` dan `/profile` untuk
 - **Laravel 13** (PHP 8.5) — framework backend, routing, Blade templating, Eloquent
 - **Breeze** — autentikasi (login, register, password reset, verification, profile)
 - **SQLite** — database default (dapat diganti MySQL/Postgres via `.env`)
-- **Tailwind CSS v4** — utility-first CSS, konfigurasi tema via `@theme` di CSS
-- **Alpine.js 3** — interaktivitas ringan (galeri, FAQ accordion, navbar scroll, collapse)
+- **Tailwind CSS v4** — utility-first CSS, konfigurasi tema via `@theme` di CSS + AJ brand color system
+- **Alpine.js 3** — interaktivitas ringan (galeri, FAQ accordion, navbar scroll, collapse, dark mode store)
 - **Vite 8** — bundler asset (CSS + JS)
 - **AOS** — animasi scroll (CDN)
 - **Swiper 11** — slider testimoni (CDN)
@@ -170,17 +173,17 @@ app/
 database/
 ├── database.sqlite                      # DB default (SQLite)
 ├── factories/                           # 4 factories (untuk test)
-├── migrations/                          # users, company_profiles, products, galleries
+├── migrations/                          # users, company_profiles, products, galleries, maps fields
 └── seeders/                              # Seeder data dummy (admin + konten)
 
 resources/
 ├── css/
-│   └── app.css                          # Tema Tailwind v4: @theme, komponen, x-cloak
+│   └── app.css                          # Tema Tailwind v4: @theme, komponen, x-cloak, dark mode
 ├── js/
-│   └── app.js                           # Entry Alpine.js core
+│   └── app.js                           # Entry Alpine.js core + theme store
 └── views/
     ├── layouts/
-    │   └── app.blade.php                # Layout master + Alpine collapse CDN
+    │   └── app.blade.php                # Layout master + Alpine collapse plugin CDN
     ├── components/                       # navbar, footer, section-heading, partials beranda
     ├── pages/                            # 5 halaman publik
     └── admin/                            # Dashboard, profil, produk, galeri (CRUD views)
@@ -197,31 +200,41 @@ tests/Feature/
 
 ## Kustomisasi Tema
 
-Semua token desain terpusat di `resources/css/app.css` (blok `@theme`):
+Semua token desain terpusat di `resources/css/app.css` (blok CSS variables + `@theme`):
 
 ```css
-@theme {
-    --color-primary: #0284C7;      /* Warna utama */
-    --color-primary-dark: #0369A1;
-    --color-dark: #0F172A;         /* Warna teks/bg gelap */
-    --color-light: #F8FAFC;        /* Warna latar terang */
-    --font-sans: 'Inter', sans-serif;
-    --font-heading: 'Sora', sans-serif;
-}
+/* Brand colors (customize these) */
+--primary: #0284C7;
+--primary-light: #0EA5E9;
+--primary-dark: #0369A1;
+--accent: #F59E0B;
+
+/* Text & background */
+--text: #0F172A;
+--text-secondary: #475569;
+--background: #FFFFFF;
 ```
 
-Ubah nilai di atas untuk mengganti warna & font seluruh situs secara konsisten.
+Ubah nilai di atas untuk mengganti warna & font seluruh situs secara konsisten. Font: Sora (heading) + Inter (body) via Google Fonts.
 
 ## Mengelola Konten
 
 Konten dikelola melalui **admin panel** — tidak perlu edit kode:
 
 1. Login di `/login` (admin@garamnusantara.co.id / password)
-2. **Profil perusahaan** → `/admin/profil/edit` → ubah nama, deskripsi, alamat, kontak, logo
-3. **Produk tunggal** → `/admin/produk/edit` → ubah nama produk, spesifikasi, manfaat, keunggulan, WhatsApp
+2. **Profil perusahaan** → `/admin/profil/edit` → ubah nama, deskripsi, alamat, kontak, logo, koordinat Google Maps
+3. **Produk** → `/admin/produk/edit` → ubah nama produk, spesifikasi, manfaat, keunggulan, WhatsApp
 4. **Galeri** → `/admin/galeri` → tambah/edit/hapus foto galeri + kategori
 
 Upload gambar galeri disimpan di `storage/app/public/`, diakses via symlink `public/storage`.
+
+## Deployment
+
+Docker dan Nixpacks sudah dikonfigurasi untuk hosting (Railway, Render, dll.):
+
+- **`Dockerfile`** — build image PHP 8.4 + Node.js
+- **`nixpacks.toml`** — konfigurasi build untuk Nixpacks
+- **DB**: default SQLite di `/data/database.sqlite` (persist volume di production)
 
 ## Lisensi
 

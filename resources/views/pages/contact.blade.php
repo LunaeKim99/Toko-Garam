@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Kontak — {{ config('app.name', 'AJ Brand') }}')
-@section('meta_description', 'Hubungi {{ config('app.name', 'AJ Brand') }} untuk pemesanan garam premium.')
+@section('meta_title', 'Kontak — Garam Nusantara Jepara')
+@section('meta_description', 'Hubungi Garam Nusantara Jepara untuk pemesanan garam premium.')
 
 @section('content')
 <section class="relative py-24 bg-gradient-to-br from-[var(--text)] to-[var(--primary)]/80 overflow-hidden">

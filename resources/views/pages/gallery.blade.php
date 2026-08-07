@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Galeri — {{ config('app.name', 'AJ Brand') }}')
+@section('meta_title', 'Galeri — Garam Nusantara Jepara')
 @section('meta_description', 'Dokumentasi aktivitas produksi garam di tambak Jepara. Lihat proses penjemuran, pemanenan, pengemasan, dan pengiriman.')
 
 @section('content')

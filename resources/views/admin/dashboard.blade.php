@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 
-@section('subtitle', 'Kelola website {{ config('app.name', 'AJ Brand') }}')
+@section('subtitle', 'Kelola website Garam Nusantara Jepara')
 
 @section('content')
 <div class="mb-8">
