@@ -34,3 +34,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/version', function () {
+    return [
+        'branch' => env('RAILWAY_GIT_BRANCH'),
+        'commit' => env('RAILWAY_GIT_COMMIT_SHA'),
+        'time' => now()->toDateTimeString(),
+    ];
+});
