@@ -34,3 +34,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/version', function () {
+    return response()->json([
+        'railway_branch' => env('RAILWAY_GIT_BRANCH', 'unknown'),
+        'railway_commit_sha' => env('RAILWAY_GIT_COMMIT_SHA', 'unknown'),
+        'deployed_at' => env('RAILWAY_GIT_COMMIT_SHA') ? now()->toIso8601String() : 'unknown',
+        'environment' => app()->environment(),
+        'app_name' => config('app.name'),
+        'app_url' => config('app.url'),
+    ]);
+});
