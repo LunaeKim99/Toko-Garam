@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "provider": "php",
+  "steps": {
+    "build": {
+      "commands": [
+        "npm run build",
+        "php artisan optimize:clear"
+      ]
+    }
+  },
+  "deploy": {
+    "startCommand": "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+  }
+}
