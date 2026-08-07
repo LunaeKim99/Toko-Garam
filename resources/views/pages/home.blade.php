@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+{{-- DEPLOY_VERSION: efd9509 — verify this appears on production --}}
+
 @section('meta_title', 'Beranda — Garam Nusantara Jepara')
 @section('meta_description', 'Garam Nusantara Jepara — produsen garam premium langsung dari tambak di Jepara, Jawa Tengah.')
 
