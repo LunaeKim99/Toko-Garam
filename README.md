@@ -230,11 +230,14 @@ Upload gambar galeri disimpan di `storage/app/public/`, diakses via symlink `pub
 
 ## Deployment
 
-Docker dan Nixpacks sudah dikonfigurasi untuk hosting (Railway, Render, dll.):
+**Railway (Railpack)** — gunakan `railpack.json` (no Dockerfile, no Nixpacks):
 
-- **`Dockerfile`** — build image PHP 8.4 + Node.js
-- **`nixpacks.toml`** — konfigurasi build untuk Nixpacks
-- **DB**: default SQLite di `/data/database.sqlite` (persist volume di production)
+- **Build**: `npm run build` (asset Vite ke `public/build/`)
+- **Start**: `php artisan optimize:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT`
+
+**SQLite + Railway persistent volume** — project memakai SQLite (`DB_CONNECTION=sqlite`, `DB_DATABASE=/data/database.sqlite`).
+Wajib pasang **persistent volume** di Railway dan mount ke `/data` agar file `database.sqlite` persisten antar deploy.
+Tanpa volume, migrasi gagal karena file DB tidak ditemukan.
 
 ## Lisensi
 
