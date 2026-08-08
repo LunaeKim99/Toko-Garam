@@ -1,49 +1,30 @@
 <section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom">
-        <x-section-heading title="Produk Unggulan Kami" subtitle="Tersedia dalam berbagai pilihan kemasan untuk memenuhi kebutuhan rumah tangga, usaha, hingga industri." />
+        <x-section-heading title="Produk Unggulan Kami" subtitle="Pilihan terbaik untuk kebutuhan rumah tangga dan usaha" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 lg:mb-16">
-            @php
-                $icons = [
-                    '200g' => 'package',
-                    '500g' => 'package-2',
-                    '1kg' => 'package-plus',
-                    '50kg' => 'truck',
-                ];
-            @endphp
-            @foreach($productVariants as $index => $variant)
-                <div class="group bg-[var(--surface)] dark:bg-[var(--surface)] rounded-xl shadow-sm-aj hover:shadow-xl transition-all duration-300 border border-[var(--border)] overflow-hidden"
-                    data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                    <div class="aspect-square bg-[var(--surface-secondary)] dark:bg-[var(--surface-secondary)] relative overflow-hidden">
-                        @if($product && $product->gambar)
-                            <img src="{{ $product->gambar }}" alt="{{ $variant['nama'] }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        @else
-                            <div class="w-full h-full flex items-center justify-center text-[var(--text-muted)]">
-                                <i data-lucide="image" class="w-12 h-12"></i>
-                            </div>
-                        @endif
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--text)]/80 to-transparent p-3">
-                            <span class="text-primary font-medium text-sm">{{ $variant['berat'] }}</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-semibold text-[var(--text)] mb-2 transition-colors duration-300 group-hover:text-primary">{{ $variant['nama'] }}</h3>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4 transition-colors duration-300">{{ $variant['deskripsi'] }}</p>
-                        <a href="{{ route('product') }}#{{ $variant['id'] }}" class="inline-flex items-center gap-1.5 text-primary font-medium text-sm hover:gap-2 transition-all duration-300">
-                            Detail
-                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                        </a>
-                    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12 lg:mb-16">
+            <div class="relative">
+                @php
+                    $featuredImages = [
+                        asset('images/producs/garam-200g.png'),
+                        asset('images/producs/garam-500g.png'),
+                    ];
+                @endphp
+                <div x-data="{ current: 0, interval: null }" x-init="interval = setInterval(() => current = (current + 1) % 2, 4000)">
+                    @foreach($featuredImages as $i => $image)
+                        <img src="{{ $image }}" alt="Garam Nusantara Jepara" x-show="current === {{ $i }}" class="w-full h-auto rounded-xl transition-opacity duration-500" />
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </div>
 
-        <div class="text-center" data-aos="fade-up">
-            <a href="{{ route('product') }}" class="btn-primary">
-                <i data-lucide="grid" class="w-5 h-5"></i>
-                Lihat Semua Produk
-            </a>
+            <div class="space-y-4">
+                <p class="text-[var(--text-secondary)] leading-relaxed">Garam Nusantara Jepara adalah produk unggulan PT Alfa Jaya Bersama yang diproduksi langsung dari tambak garam di pesisir Jepara, Jawa Tengah. Kami menggunakan air laut alami dengan proses penguapan tradisional di bawah sinar matahari, menghasilkan kristal garam berkualitas tinggi yang kaya mineral.</p>
+                <p class="text-[var(--text-secondary)] leading-relaxed">Produk ini diproses secara higienis tanpa bahan pengawet buatan, bebas kontaminasi, dan terjaga kemurniannya dari tambak hingga ke meja masyarakat. Dengan kandungan natrium yang seimbang dan rasa yang khas, garam Nusantara Jepara menjadi pilihan utama keluarga Indonesia untuk kebutuhan memasak sehari-hari.</p>
+                <p class="text-[var(--text-secondary)] leading-relaxed">Tersedia dalam berbagai pilihan kemasan mulai dari 200 gram hingga 50 kilogram, kami melayani kebutuhan rumah tangga, usaha kuliner, hingga industri besar. Garam Nusantara Jepara, rasa alami dari pesisir Jawa.</p>
+                <a href="{{ route('product') }}" class="inline-flex items-center gap-1.5 text-primary font-medium text-sm hover:gap-2 transition-all duration-300 mt-2">
+                    Lihat Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>

@@ -11,6 +11,7 @@
         })();
     </script>
     <title>@yield('title', 'Admin') — Garam Nusantara</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo/logo-utama.svg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>

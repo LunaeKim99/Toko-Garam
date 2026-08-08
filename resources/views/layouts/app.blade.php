@@ -13,6 +13,7 @@
 
     <title>@yield('meta_title', 'Garam Nusantara Jepara — Garam Premium dari Tambak')</title>
     <meta name="description" content="@yield('meta_description', 'Garam Nusantara Jepara — produsen garam premium langsung dari tambak di Jepara, Jawa Tengah.')">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo/logo-utama.svg') }}">
 
     <meta property="og:title" content="@yield('meta_title', 'Garam Nusantara Jepara')">
     <meta property="og:description" content="@yield('meta_description', 'Garam premium dari tambak Jepara.')">

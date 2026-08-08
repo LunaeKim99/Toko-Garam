@@ -4,12 +4,9 @@
 
     <div class="container-custom">
         <nav class="flex items-center justify-between h-16 lg:h-20">
-            <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">AJ</span>
-                </div>
-                <span class="text-lg font-bold text-[var(--text)]">{{ config('app.name', 'AJ Brand') }}</span>
-            </a>
+<a href="{{ route('home') }}" class="flex items-center">
+                    <img src="{{ asset('images/logo/logo-header.svg') }}" alt="Garam Nusantara Jepara" class="h-10 lg:h-12 w-auto" />
+                </a>
 
             <div class="hidden lg:flex items-center gap-6">
                 @php
