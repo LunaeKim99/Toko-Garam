@@ -5,7 +5,7 @@
 
 @section('content')
 @php
-    $waNumber = $product?->whatsapp ?? '6281234567890';
+    $waNumber = $product?->whatsapp ?? '6285287313219';
 @endphp
 <section class="relative py-24 bg-gradient-to-br from-[var(--text)] to-[var(--primary)]/80 overflow-hidden">
     <div class="absolute inset-0">

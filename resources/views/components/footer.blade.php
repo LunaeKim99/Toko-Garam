@@ -45,14 +45,14 @@
                     </li>
                     <li class="flex items-start gap-3">
                         <i data-lucide="phone" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
-                        <a href="https://wa.me/{{ $company?->telepon ?? '6281234567890' }}" class="hover:text-primary transition-colors duration-300">
-                            {{ $company?->telepon ?? '+62 812-3456-7890' }}
+                        <a href="https://wa.me/{{ $company?->telepon ?? '6285287313219' }}" class="hover:text-primary transition-colors duration-300">
+                            {{ $company?->telepon ?? '+62 852-8731-3219' }}
                         </a>
                     </li>
                     <li class="flex items-start gap-3">
                         <i data-lucide="mail" class="w-4 h-4 mt-0.5 text-primary shrink-0"></i>
-                        <a href="mailto:{{ $company?->email ?? 'info@garamnusantara.co.id' }}" class="hover:text-primary transition-colors duration-300">
-                            {{ $company?->email ?? 'info@garamnusantara.co.id' }}
+                        <a href="mailto:{{ $company?->email ?? 'ptalfajayabersama@gmail.com' }}" class="hover:text-primary transition-colors duration-300">
+                            {{ $company?->email ?? 'ptalfajayabersama@gmail.com' }}
                         </a>
                     </li>
                 </ul>
@@ -62,16 +62,8 @@
                 <h3 class="font-semibold text-[var(--text)] mb-4">Jam Layanan</h3>
                 <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
                     <li class="flex justify-between">
-                        <span>Senin - Jumat</span>
+                        <span>Setiap Hari</span>
                         <span>08.00 - 17.00</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Sabtu</span>
-                        <span>08.00 - 13.00</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Minggu</span>
-                        <span class="text-[var(--danger)]">Libur</span>
                     </li>
                 </ul>
             </div>

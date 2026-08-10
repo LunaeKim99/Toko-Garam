@@ -41,8 +41,8 @@ class DatabaseSeeder extends Seeder
                 . "3. Mendukung petani garam lokal\n"
                 . "4. Menyediakan produk yang konsisten dan terpercaya",
             'alamat' => 'Jepara, Jawa Tengah',
-            'telepon' => '+62 812-3456-7890',
-            'email' => 'info@garamnusantara.co.id',
+            'telepon' => '+62 852-8731-3219',
+            'email' => 'ptalfajayabersama@gmail.com',
             'logo' => null,
             'maps_lat' => -6.666499428336486,
             'maps_lng' => 110.64402441302167,
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
                 . 'paparan sinar matahari langsung dan kelembaban untuk '
                 . 'menjaga kualitas garam.',
             'gambar' => 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg',
-            'whatsapp' => '6281234567890',
+            'whatsapp' => '6285287313219',
         ]);
 
         $galleries = [

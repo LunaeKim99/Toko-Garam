@@ -43,7 +43,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-[var(--text)] text-sm mb-1">WhatsApp</h3>
-                            <a href="https://wa.me/{{ $product?->whatsapp ?? '6281234567890' }}" target="_blank" class="text-[var(--whatsapp)] text-sm hover:underline">
+                            <a href="https://wa.me/{{ $product?->whatsapp ?? '6285287313219' }}" target="_blank" class="text-[var(--whatsapp)] text-sm hover:underline">
                                 {{ $company?->telepon }}
                             </a>
                         </div>
@@ -71,16 +71,8 @@
                             <h3 class="font-semibold text-[var(--text)] text-sm mb-2">Jam Operasional</h3>
                             <div class="space-y-1">
                                 <div class="flex justify-between text-sm">
-                                    <span class="text-[var(--text-secondary)]">Senin - Jumat</span>
+                                    <span class="text-[var(--text-secondary)]">Setiap Hari</span>
                                     <span class="text-[var(--text)] font-medium">08:00 - 17:00</span>
-                                </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-[var(--text-secondary)]">Sabtu</span>
-                                    <span class="text-[var(--text)] font-medium">08:00 - 13:00</span>
-                                </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-[var(--text-secondary)]">Minggu</span>
-                                    <span class="text-[var(--danger)] font-medium">Libur</span>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +83,7 @@
             <div class="lg:col-span-3" data-aos="fade-left">
                 <div class="bg-[var(--surface)] p-6 lg:p-8 rounded-xl shadow-sm-aj border border-[var(--border)]">
                     <h2 class="text-xl font-bold text-[var(--text)] mb-6">Kirim Pesan via WhatsApp</h2>
-                    <form action="https://wa.me/{{ $product?->whatsapp ?? '6281234567890' }}" method="GET" target="_blank" class="space-y-5">
+                    <form action="https://wa.me/{{ $product?->whatsapp ?? '6285287313219' }}" method="GET" target="_blank" class="space-y-5">
                         <div>
                             <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Nama</label>
                             <input type="text" name="name" required

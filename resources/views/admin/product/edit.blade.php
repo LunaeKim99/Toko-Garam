@@ -86,7 +86,7 @@
 
         <div>
             <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Nomor WhatsApp (tanpa +)</label>
-            <input type="text" name="whatsapp" value="{{ old('whatsapp', $product?->whatsapp) }}" required placeholder="contoh: 6281234567890"
+            <input type="text" name="whatsapp" value="{{ old('whatsapp', $product?->whatsapp) }}" required placeholder="contoh: 6285287313219"
                 class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
             @error('whatsapp') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
         </div>
