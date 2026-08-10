@@ -30,9 +30,11 @@
             Garam premium kami tersedia dalam berbagai ukuran kemasan untuk memenuhi kebutuhan rumah tangga, usaha kuliner, hingga industri besar.
         </p>
 
-        <div x-data="{ modalOpen: false, active: null, message: '' }"
-             x-init="$watch('active', value => { message = value?.message || ''; })"
-             @keydown.escape.window="modalOpen = false">
+        <div x-data="{ modalOpen: false, active: null, message: '', imgIdx: 0, touchX: 0 }"
+             x-init="$watch('active', value => { message = value?.message || ''; imgIdx = 0; }); $watch('modalOpen', () => { if (modalOpen) lucide.createIcons(); })"
+             @keydown.escape.window="modalOpen = false"
+             @keydown.arrow-right.window="imgIdx < (active?.images?.length || 1) - 1 && imgIdx++"
+             @keydown.arrow-left.window="imgIdx > 0 && imgIdx--">
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             @forelse($productVariants as $index => $variant)
@@ -80,26 +82,65 @@
                  x-transition:leave="ease-in duration-200"
                  x-transition:leave-start="opacity-100 scale-100"
                  x-transition:leave-end="opacity-0 scale-95"
-                 @click.away="modalOpen = false">
+                 @click.away="modalOpen = false"
+                 x-init="lucide.createIcons()">
 
                 <button @click="modalOpen = false" class="absolute top-3 right-3 z-10 w-8 h-8 bg-[var(--surface)] rounded-full shadow flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
 
                 <div class="flex flex-col lg:flex-row overflow-y-auto">
-                    <div class="lg:w-1/2 aspect-[4/3] lg:aspect-auto lg:min-h-[520px] relative shrink-0">
-                        <template x-if="active && active.image">
-                            <img :src="active.image" :alt="active.nama" class="absolute inset-0 w-full h-full object-cover" />
+<div class="lg:w-1/2 aspect-[4/3] lg:aspect-auto lg:min-h-[520px] relative shrink-0 group-slider overflow-hidden"
+                     @touchstart="touchX = $event.touches[0].clientX"
+                     @touchend="$event.changedTouches[0].clientX < touchX - 40 && imgIdx < (active?.images?.length || 1) - 1 && imgIdx++; $event.changedTouches[0].clientX > touchX + 40 && imgIdx > 0 && imgIdx--"
+                     @mousedown="touchX = $event.clientX"
+                     @mouseup="$event.clientX < touchX - 40 && imgIdx < (active?.images?.length || 1) - 1 && imgIdx++; $event.clientX > touchX + 40 && imgIdx > 0 && imgIdx--">
+                    <template x-if="active && active.images?.length">
+                        <template x-for="(img, i) in active.images" :key="i">
+                            <img :src="img" :alt="active.nama" x-show="imgIdx === i"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 scale-95"
+                                x-transition:enter-end="opacity-100 scale-100"
+                                class="absolute inset-0 w-full h-full object-cover" />
                         </template>
-                        <template x-if="active && !active.image">
-                            <div class="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-2 bg-[var(--background)] text-[var(--text-muted)]">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/>
-                                </svg>
-                                <span class="text-sm" x-text="'Gambar ' + active?.nama + ' segera hadir'"></span>
-                            </div>
-                        </template>
-                    </div>
+                    </template>
+                    <template x-if="active && active.image && !active.images?.length">
+                        <img :src="active.image" :alt="active.nama" class="absolute inset-0 w-full h-full object-cover" />
+                    </template>
+                    <template x-if="active && !active.image">
+                        <div class="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-2 bg-[var(--background)] text-[var(--text-muted)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2-2z"/>
+                            </svg>
+                            <span class="text-sm" x-text="'Gambar ' + active?.nama + ' segera hadir'"></span>
+                        </div>
+                    </template>
+
+                    <template x-if="active && (active.images?.length || 0) > 1">
+                        <div class="absolute inset-0 flex items-center justify-between px-3">
+                            <button @click.stop="imgIdx > 0 && imgIdx--"
+                                class="w-9 h-9 bg-white/80 dark:bg-[var(--surface)]/80 backdrop-blur rounded-full shadow flex items-center justify-center text-[var(--text)] hover:bg-white dark:hover:bg-[var(--surface)] transition-colors disabled:opacity-30"
+                                :disabled="imgIdx === 0">
+                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            </button>
+                            <button @click.stop="imgIdx < (active.images?.length || 0) - 1 && imgIdx++"
+                                class="w-9 h-9 bg-white/80 dark:bg-[var(--surface)]/80 backdrop-blur rounded-full shadow flex items-center justify-center text-[var(--text)] hover:bg-white dark:hover:bg-[var(--surface)] transition-colors disabled:opacity-30"
+                                :disabled="imgIdx === (active.images?.length || 0) - 1">
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </template>
+
+                    <template x-if="active && (active.images?.length || 0) > 1">
+                        <div class="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2">
+                            <template x-for="(img, i) in active.images" :key="'dot' + i">
+                                <button @click.stop="imgIdx = i"
+                                    class="h-2 rounded-full transition-all duration-300"
+                                    :class="imgIdx === i ? 'w-6 bg-primary' : 'w-2 bg-white/60 hover:bg-white/90'"></button>
+                            </template>
+                        </div>
+                    </template>
+                </div>
 
                     <div class="lg:w-1/2 p-6 lg:p-8 flex flex-col gap-5">
                         <div class="flex-1 overflow-y-auto pr-1 space-y-4">
