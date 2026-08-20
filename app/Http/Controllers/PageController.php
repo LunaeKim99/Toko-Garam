@@ -2,137 +2,120 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyProfile;
+use App\Models\Gallery;
+use App\Models\Product;
+
 class PageController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+        $company = CompanyProfile::first();
+        $product = Product::first();
+        $productVariants = $this->getProductVariants($product);
+
+        return view('pages.home', compact('company', 'product', 'productVariants'));
     }
 
     public function about()
     {
-        $company = [
-            'founded' => 2010,
-            'description' => 'Garam Nusantara didirikan pada tahun 2010 di Jakarta Utara dengan visi menjadi distributor garam terpercaya di Indonesia. Berawal dari tambak garam tradisional, kami berkembang menjadi perusahaan modern dengan jaringan distribusi ke seluruh Indonesia.',
-            'history' => 'Perjalanan kami dimulai dari sebuah tambak kecil di pesisir utara Jakarta. Dengan kegigihan dan komitmen terhadap kualitas, kami berhasil memperluas pasar hingga ke pulau-pulau besar di Indonesia. Pada tahun 2015, kami membangun pabrik pengolahan garam bersertifikat ISO. Hingga kini, kami melayani lebih dari 1000 klien dari berbagai sektor industri.',
-            'vision' => 'Menjadi perusahaan garam terdepan di Indonesia yang terkenal akan kualitas, inovasi, dan keberlanjutan.',
-            'mission' => [
-                'Menyediakan produk garam berkualitas tinggi yang memenuhi standar nasional dan internasional.',
-                'Mengembangkan teknologi pengolahan garam yang ramah lingkungan.',
-                'Membangun jaringan distribusi yang efisien ke seluruh Indonesia.',
-                'Memberdayakan petak garam lokal melalui program kemitraan.',
-            ],
-            'values' => [
-                ['icon' => 'shield-check', 'title' => 'Integritas', 'desc' => 'Kejujuran dalam setiap aspek bisnis.'],
-                ['icon' => 'gem', 'title' => 'Kualitas', 'desc' => 'Standar tertanam dalam setiap produk.'],
-                ['icon' => 'lightbulb', 'title' => 'Inovasi', 'desc' => 'Terus berkembang mengikuti perkembangan zaman.'],
-                ['icon' => 'leaf', 'title' => 'Keberlanjutan', 'desc' => 'Produksi ramah lingkungan untuk masa depan.'],
-                ['icon' => 'users', 'title' => 'Pelanggan', 'desc' => 'Kepuasan pelanggan adalah prioritas utama.'],
-                ['icon' => 'award', 'title' => 'Profesionalisme', 'desc' => 'Standar kerja tinggi dalam setiap proses.'],
-            ],
-            'timeline' => [
-                ['year' => '2010', 'event' => 'Pendirian perusahaan dan awal operasi tambak garam.'],
-                ['year' => '2012', 'event' => 'Ekspansi ke pasar Jawa dan Sumatera.'],
-                ['year' => '2015', 'event' => 'Pembangunan pabrik pengolahan bersertifikat ISO.'],
-                ['year' => '2018', 'event' => 'Peluncuran lini produk garam premium.'],
-                ['year' => '2020', 'event' => 'Jaringan distribusi mencakup seluruh Indonesia.'],
-                ['year' => '2023', 'event' => 'Meraih penghargaan Usaha Garam Nasional.'],
-            ],
-            'gallery' => [
-                'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600',
-                'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600',
-                'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600',
-                'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600',
-                'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600',
-                'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600',
-            ],
-        ];
+        $company = CompanyProfile::first();
+        $galleries = Gallery::all();
 
-        return view('pages.about', compact('company'));
+        return view('pages.about', compact('company', 'galleries'));
     }
 
-    public function products()
+    public function product()
     {
-        $products = [
-            ['slug' => 'garam-halus-premium-1kg', 'name' => 'Garam Halus Premium 1kg', 'category' => 'Garam Halus', 'weight' => '1 kg', 'description' => 'Garam halus berukuran seragam untuk kebutuhan dapur dan industri makanan.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
-            ['slug' => 'garam-halus-premium-5kg', 'name' => 'Garam Halus Premium 5kg', 'category' => 'Garam Halus', 'weight' => '5 kg', 'description' => 'Kemasan ekonomis untuk usaha kuliner dan industri skala menengah.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
-            ['slug' => 'garam-kasar-industri-25kg', 'name' => 'Garam Kasar Industri 25kg', 'category' => 'Garam Kasar', 'weight' => '25 kg', 'description' => 'Garam kasar untuk proses pengolahan industri, konstruksi, dan pertambakan.', 'image' => 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600'],
-            ['slug' => 'garam-krosok-murni-5kg', 'name' => 'Garam Krosok Murni 5kg', 'category' => 'Garam Krosok', 'weight' => '5 kg', 'description' => 'Garam krosok asli tambak untuk keperluan pengasinan dan konsumsi.', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
-            ['slug' => 'garam-industri-50kg', 'name' => 'Garam Industri 50kg', 'category' => 'Garam Industri', 'weight' => '50 kg', 'description' => 'Garam bersih untuk kebutuhan industri kimia dan farmasi.', 'image' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600'],
-            ['slug' => 'garam-meja-500g', 'name' => 'Garam Meja 500g', 'category' => 'Garam Halus', 'weight' => '500 g', 'description' => 'Garam meja beriodium untuk konsumsi rumah tangga.', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
-        ];
+        $product = Product::first();
+        $productVariants = $this->getProductVariants($product);
 
-        $categories = ['Semua', 'Garam Halus', 'Garam Kasar', 'Garam Krosok', 'Garam Industri'];
-
-        return view('pages.products', compact('products', 'categories'));
+        return view('pages.product', compact('product', 'productVariants'));
     }
 
-    public function productDetail(string $slug)
+    private function getProductVariants($product)
     {
-        $product = [
-            'slug' => $slug,
-            'name' => 'Garam Halus Premium 1kg',
-            'category' => 'Garam Halus',
-            'weight' => '1 kg',
-            'description' => 'Garam halus premium diproses dari air laut murni menggunakan teknologi modern. Ukuran kristal seragam, cocok untuk kebutuhan dapur rumah tangga maupun industri makanan. Bebas bahan pengawet dan pewarna buatan.',
-            'specifications' => [
-                'Jenis' => 'Garam Halus',
-                'Kemasan' => 'Plastik kedap udara',
-                'Berat Bersih' => '1 kg',
-                'Sertifikasi' => 'ISO 22000, Halal MUI',
-                'Umur Simpan' => '24 bulan',
+        if (!$product) {
+            return [];
+        }
+
+        $dir = public_path('images/producs');
+        $variants = [
+            [
+                'id' => '200g',
+                'nama' => 'Garam 200 Gram',
+                'berat' => '200 g',
+                'deskripsi' => 'Kemasan praktis untuk kebutuhan harian keluarga. Cocok untuk memasak sehari-hari dan konsumsi pribadi.',
+                'detail' => 'Garam 200 Gram adalah kemasan terkecil yang ideal untuk keluarga kecil hingga menengah. Dikemas dalam botol/bungkus kedap udara yang memudahkan penyimpanan dan penggunaan sehari-hari. Kristal garam halus dan konsisten, cepat larut saat dimasak, menghasilkan rasa gurih alami tanpa perlu tambahan penyedap buatan. Cocok untuk memasak nasi, sup, tumisan, saus, dan berbagai kebutuhan dapur harian. Proses produksi tradisional menjamin kandungan mineral alami seperti magnesium, kalsium, dan kalium yang baik untuk tubuh.',
+                'message' => 'Halo, saya ingin memesan Garam 200 Gram. Mohon informasi harga dan ketersediaannya.',
+                'icon' => 'package',
             ],
-            'benefits' => [
-                'Tinggi mineral alami (natrium, kalsium, magnesium)',
-                'Tanpa bahan pengawet',
-                'Cocok untuk semua jenis masakan',
-                'Kristal halus, mudah larut',
-                'Kemasan kedap udara menjaga kesegaran',
+            [
+                'id' => '500g',
+                'nama' => 'Garam 500 Gram',
+                'berat' => '500 g',
+                'deskripsi' => 'Ukuran ideal untuk keluarga sedang hingga besar. Hemat dan efisien untuk pengambilan rutin.',
+                'detail' => 'Garam 500 Gram adalah ukuran paling populer untuk keluarga Indonesia. Kapasitas yang pas untuk 2-4 minggu penggunaan rutin keluarga 4-5 orang. Kemasan plastik standar berat dengan tutup rapat menjaga kesegaran dan mencegah garam menyerap kelembaban. Kristal garam premium dari air laut Jepara diproses tanpa bahan pengawet, pewarna, atau penganti kimia. Rasa asin alami yang seimbang memperkaya cita rasa masakan tradisional hingga modern. Harga per gram lebih hemat dibanding kemasan kecil.',
+                'message' => 'Halo, saya ingin memesan Garam 500 Gram. Mohon informasi harga dan ketersediaannya.',
+                'icon' => 'package-2',
             ],
-            'gallery' => [
-                'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=800',
-                'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800',
-                'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=800',
+            [
+                'id' => '1kg',
+                'nama' => 'Garam 1 Kilogram',
+                'berat' => '1 kg',
+                'deskripsi' => 'Kemasan ekonomis untuk kebutuhan rumah tangga intensif dan usaha kuliner skala kecil.',
+                'detail' => 'Garam 1 Kilogram dirancang untuk rumah tangga besar, kos-kosan, maupun usaha kuliner skala kecil (warung makan, catering rumahan, bakso, mie ayam). Kemasan plastik tebal dengan seal kemasan pabrik menjamin kebersihan hingga ke tangan pembeli. Kandungan NaCl tinggi (>99%) dengan mineral alami utuh membuat garam ini efisien — hanya butuh sedikit untuk memberikan rasa asin pas. Cocok juga untuk pengawetan makanan tradisional (asin ikan, dendeng, jeruk). Pilihan hemat untuk volume menengah.',
+                'message' => 'Halo, saya ingin memesan Garam 1 Kilogram. Mohon informasi harga dan ketersediaannya.',
+                'icon' => 'package-plus',
             ],
-            'related' => [
-                ['slug' => 'garam-halus-premium-5kg', 'name' => 'Garam Halus Premium 5kg', 'category' => 'Garam Halus', 'weight' => '5 kg', 'description' => 'Kemasan ekonomis untuk usaha kuliner.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
-                ['slug' => 'garam-krosok-murni-5kg', 'name' => 'Garam Krosok Murni 5kg', 'category' => 'Garam Krosok', 'weight' => '5 kg', 'description' => 'Garam krosok asli tambak.', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
-                ['slug' => 'garam-meja-500g', 'name' => 'Garam Meja 500g', 'category' => 'Garam Halus', 'weight' => '500 g', 'description' => 'Garam meja beriodium.', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
+            [
+                'id' => '50kg',
+                'nama' => 'Garam 50 Kilogram (1 Karung)',
+                'berat' => '50 kg',
+                'deskripsi' => 'Kemasan industri untuk distributor, pabrik, dan pembelian grosir volume besar.',
+                'detail' => 'Garam 50 Kilogram (1 Karung) adalah standar industri untuk distributor, pabrik makanan, industri pengolahan ikan/ternak, dan grosir besar. Karung polipropilene woven yang kuat, tahan robek, dan dilapis dalam plastik PE untuk proteksi ganda terhadap kelembaban dan kontaminan. Setiap karung dikemas dengan standar pabrik: berat bersih 50kg, label identitas produk, nomor batch untuk traceability. Harga grosir khusus tersedia untuk partai ≥50 karung. Pengiriman bisa diantar ke gudang/pabrik di seluruh Jawa (surat jalan resmi). Cocok untuk industri: pakan ternak, pengolahan ikan asin, saus, bumbu instan, dll.',
+                'message' => 'Halo, saya ingin memesan Garam 50 Kilogram (1 Karung) untuk kebutuhan industri/grosir. Mohon informasi harga grosir, minimum order, dan jadwal pengiriman.',
+                'icon' => 'truck',
             ],
         ];
 
-        return view('pages.product-detail', compact('product', 'slug'));
+        foreach ($variants as &$v) {
+            $slug = $v['id'];
+            $imgs = [];
+
+            $base = $dir . "/garam-{$slug}.png";
+            if (file_exists($base)) {
+                $imgs[] = asset("images/producs/garam-{$slug}.png");
+            }
+
+            for ($n = 1; $n <= 9; $n++) {
+                $extra = $dir . "/garam-{$slug}-{$n}.png";
+                if (file_exists($extra)) {
+                    $imgs[] = asset("images/producs/garam-{$slug}-{$n}.png");
+                }
+            }
+
+            $v['images'] = $imgs;
+            $v['image'] = $imgs[0] ?? null;
+        }
+        unset($v);
+
+        return $variants;
     }
 
-    public function articles()
+    public function gallery()
     {
-        $articles = [
-            ['slug' => 'manfaat-garam-konsumsi', 'title' => 'Manfaat Garam untuk Kesehatan Tubuh', 'excerpt' => 'Garam mengandung mineral penting yang dibutuhkan tubuh. Ketahui manfaat dan cara mengonsumsi garam yang benar.', 'category' => 'Kesehatan', 'date' => '15 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600'],
-            ['slug' => 'cara-memilih-garam-masak', 'title' => 'Tips Memilih Garam untuk Masakan', 'excerpt' => 'Tidak semua garam cocok untuk semua masakan. Pelajari perbedaan jenis garam dan kapan menggunakannya.', 'category' => 'Tips', 'date' => '10 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600'],
-            ['slug' => 'proses-pembuatan-garam-tradisional', 'title' => 'Proses Pembuatan Garam Tradisional', 'excerpt' => 'Mengenal proses pengolahan garam dari tambak tradisional hingga menjadi garam siap pakai.', 'category' => 'Edukasi', 'date' => '5 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600'],
-            ['slug' => 'garam-industri-penggunaan', 'title' => 'Penggunaan Garam dalam Industri', 'excerpt' => 'Garam tidak hanya untuk konsumsi. Industri kimia, farmasi, dan tekstil sangat bergantung pada garam.', 'category' => 'Industri', 'date' => '1 Juli 2026', 'image' => 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600'],
-            ['slug' => 'standar-kualitas-garam', 'title' => 'Standar Kualitas Garam di Indonesia', 'excerpt' => 'Peraturan dan standar mutu garam yang berlaku di Indonesia, termasuk SNI untuk garam konsumsi.', 'category' => 'Regulasi', 'date' => '25 Juni 2026', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
-            ['slug' => 'garam-himalaya-vs-lokal', 'title' => 'Garam Himalaya vs Garam Lokal', 'excerpt' => 'Perbandingan garam Himalaya yang populer dengan garam lokal Indonesia dari segi kandungan mineral dan harga.', 'category' => 'Edukasi', 'date' => '20 Juni 2026', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
-        ];
+        $galleries = Gallery::all();
+        $categories = Gallery::distinct()->pluck('kategori')->toArray();
 
-        return view('pages.articles', compact('articles'));
+        return view('pages.gallery', compact('galleries', 'categories'));
     }
 
     public function contact()
     {
-        $contactInfo = [
-            'address' => 'Jl. Raya Pantai No. 123, Kel. Muara Baru, Kec. Penjaringan, Jakarta Utara 14470',
-            'phone' => '+62 21 1234 5678',
-            'whatsapp' => '+62 812 3456 7890',
-            'email' => 'info@garamnusantara.co.id',
-            'hours' => [
-                'Senin - Jumat' => '08:00 - 17:00',
-                'Sabtu' => '08:00 - 13:00',
-                'Minggu' => 'Libur',
-            ],
-            'map_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.7!2d106.8!3d-6.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMDYnMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sid!2sid!4v1234567890',
-        ];
+        $company = CompanyProfile::first();
+        $product = Product::first();
 
-        return view('pages.contact', compact('contactInfo'));
+        return view('pages.contact', compact('company', 'product'));
     }
 }

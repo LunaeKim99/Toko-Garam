@@ -1,0 +1,118 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Edit Produk')
+
+@section('content')
+<div class="flex items-center justify-between mb-8">
+    <h1 class="text-2xl font-bold text-[var(--text)]">Edit Produk</h1>
+    <a href="{{ route('admin.dashboard') }}" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)]">← Kembali</a>
+</div>
+
+<form action="{{ route('admin.product.update') }}" method="POST" enctype="multipart/form-data" class="bg-[var(--surface)] p-6 lg:p-8 rounded-xl shadow-sm border border-[var(--border)] max-w-3xl">
+    @csrf
+    @method('PUT')
+
+    <div class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Nama Produk</label>
+                <input type="text" name="nama" value="{{ old('nama', $product?->nama) }}" required
+                    class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                @error('nama') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Berat</label>
+                <input type="text" name="berat" value="{{ old('berat', $product?->berat) }}" required placeholder="contoh: 1 kg"
+                    class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                @error('berat') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Deskripsi</label>
+            <textarea name="deskripsi" rows="4" required
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('deskripsi', $product?->deskripsi) }}</textarea>
+            @error('deskripsi') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Spesifikasi</label>
+            <div id="spesifikasi-fields" class="space-y-3">
+                @foreach($product?->spesifikasi ?? [] as $key => $value)
+                    <div class="grid grid-cols-12 gap-2 items-center">
+                        <input type="text" name="spesifikasi_key[]" value="{{ old('spesifikasi_key.' . $loop->index, $key) }}"
+                            placeholder="Nama spesifikasi (contoh: Jenis)"
+                            class="col-span-5 sm:col-span-4 px-4 py-2.5 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                        <input type="text" name="spesifikasi_value[]" value="{{ old('spesifikasi_value.' . $loop->index, $value) }}"
+                            placeholder="Nilai (contoh: Garam Meja Premium)"
+                            class="col-span-5 sm:col-span-6 px-4 py-2.5 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+                        <button type="button" onclick="this.closest('.grid').remove()"
+                            class="col-span-2 sm:col-span-2 p-2.5 text-[var(--danger)] hover:text-[var(--danger)]" aria-label="Hapus spesifikasi">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                @endforeach
+            </div>
+            <button type="button" id="add-spesifikasi" class="mt-3 inline-flex items-center gap-2 px-3 py-2 text-sm text-primary hover:text-primary-dark font-medium">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                Tambah Spesifikasi
+            </button>
+            <p class="text-xs text-[var(--text-muted)] mt-1">Kosongkan nama untuk menghapus spesifikasi</p>
+            @error('spesifikasi') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Keunggulan (satu baris per item)</label>
+            <textarea name="keunggulan" rows="4"
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('keunggulan', is_array($product?->keunggulan) ? implode("\n", $product?->keunggulan) : '') }}</textarea>
+            <p class="text-xs text-[var(--text-muted)] mt-1">Pisahkan setiap keunggulan dengan enter (satu baris per item)</p>
+            @error('keunggulan') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Manfaat (satu baris per item)</label>
+            <textarea name="manfaat" rows="4"
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('manfaat', is_array($product?->manfaat) ? implode("\n", $product?->manfaat) : '') }}</textarea>
+            <p class="text-xs text-[var(--text-muted)] mt-1">Pisahkan setiap manfaat dengan enter (satu baris per item)</p>
+            @error('manfaat') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Cara Penyimpanan</label>
+            <textarea name="penyimpanan" rows="3" required
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm resize-none">{{ old('penyimpanan', $product?->penyimpanan) }}</textarea>
+            @error('penyimpanan') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Nomor WhatsApp (tanpa +)</label>
+            <input type="text" name="whatsapp" value="{{ old('whatsapp', $product?->whatsapp) }}" required placeholder="contoh: 6285287313219"
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">
+            @error('whatsapp') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-[var(--text)] mb-1.5">Gambar Produk (opsional)</label>
+            <input type="file" name="gambar" accept="image/*"
+                class="w-full px-4 py-3 border border-[var(--border)] rounded-xl text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[var(--primary-soft)] file:text-[var(--primary)] file:font-medium file:text-sm">
+            @error('gambar') <p class="text-[var(--danger)] text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <button type="submit" class="btn-primary">Simpan Perubahan</button>
+    </div>
+</form>
+<script>
+    document.getElementById('add-spesifikasi').addEventListener('click', function() {
+        const container = document.getElementById('spesifikasi-fields');
+        const div = document.createElement('div');
+        div.className = 'grid grid-cols-12 gap-2 items-center';
+        div.innerHTML = '<input type="text" name="spesifikasi_key[]" placeholder="Nama spesifikasi" class="col-span-5 sm:col-span-4 px-4 py-2.5 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">' +
+            '<input type="text" name="spesifikasi_value[]" placeholder="Nilai spesifikasi" class="col-span-5 sm:col-span-6 px-4 py-2.5 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-sm">' +
+            '<button type="button" onclick="this.closest(\'.grid\').remove()" class="col-span-2 sm:col-span-2 p-2.5 text-[var(--danger)] hover:text-[var(--danger)]" aria-label="Hapus spesifikasi"><i data-lucide="trash-2" class="w-5 h-5"></i></button>';
+        container.appendChild(div);
+        lucide.createIcons();
+    });
+</script>
+@endsection

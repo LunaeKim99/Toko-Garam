@@ -1,37 +1,35 @@
 <section class="relative min-h-screen flex items-center overflow-hidden">
-    {{-- Swiper Background --}}
     <div class="swiper hero-swiper absolute inset-0 z-0">
         <div class="swiper-wrapper">
             @foreach([
-                'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920',
-                'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920',
-                'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920',
+                'https://images.pexels.com/photos/3344508/pexels-photo-3344508.jpeg?auto=compress&w=1920&h=1280&fit=crop',
+                'https://images.pexels.com/photos/5173683/pexels-photo-5173683.jpeg?auto=compress&w=1920&h=1280&fit=crop',
+                'https://images.pexels.com/photos/27098270/pexels-photo-27098270.jpeg?auto=compress&w=1920&h=1280&fit=crop',
+                'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg?auto=compress&w=1920&h=1280&fit=crop',
             ] as $img)
-                <div class="swiper-slide">
-                    <img src="{{ $img }}" alt="Tambak Garam" class="w-full h-full object-cover">
+                <div class="swiper-slide min-h-screen">
+                    <img src="{{ $img }}" alt="Tambak Garam Jepara" class="w-full h-full object-cover object-center">
                 </div>
             @endforeach
         </div>
     </div>
 
-    {{-- Gradient Overlay --}}
-    <div class="absolute inset-0 z-10 bg-gradient-to-r from-dark/80 via-dark/60 to-primary/40"></div>
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-[var(--background)]/90 via-[var(--background)]/70 to-[var(--primary)]/50"></div>
 
-    {{-- Content --}}
-    <div class="relative z-20 container-custom py-20">
+    <div class="relative z-20 container-custom py-16">
         <div class="max-w-2xl">
-            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 sm:mb-6"
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-tight mb-3 sm:mb-4 transition-colors duration-300"
                 data-aos="fade-up">
-                Solusi Garam<br>
-                <span class="text-primary-light">Berkualitas Terbaik</span>
+                Garam Jepara Asli,<br>
+                <span class="text-primary">Diproduksi Langsung dari Tambak Kami</span>
             </h1>
-            <p class="text-lg sm:text-xl text-gray-200 mb-6 sm:mb-8 max-w-lg"
+            <p class="text-base sm:text-lg text-[var(--text-secondary)] mb-4 sm:mb-6 max-w-lg transition-colors duration-300"
                 data-aos="fade-up" data-aos-delay="100">
-                Menyediakan garam murni untuk kebutuhan industri dan konsumen dengan standar kualitas tertinggi.
+                Garam laut berkualitas tinggi yang diproduksi secara tradisional dan higienis dari tambak garam di pesisir Jepara, Jawa Tengah.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4"
                 data-aos="fade-up" data-aos-delay="200">
-                <a href="{{ route('products') }}" class="btn-primary">
+                <a href="{{ route('product') }}" class="btn-primary">
                     Lihat Produk
                 </a>
                 <a href="{{ route('contact') }}" class="btn-outline">
@@ -41,9 +39,8 @@
         </div>
     </div>
 
-    {{-- Scroll Down Indicator --}}
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <a href="#features" class="text-white/70 hover:text-white transition-colors">
+        <a href="#keunggulan" class="text-[var(--text-secondary)] hover:text-primary transition-colors duration-300">
             <i data-lucide="chevrons-down" class="w-6 h-6"></i>
         </a>
     </div>

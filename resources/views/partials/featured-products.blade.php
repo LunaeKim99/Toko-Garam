@@ -1,26 +1,28 @@
-<section class="section-padding">
+<section class="section-padding dark:bg-[var(--background)] transition-colors duration-300">
     <div class="container-custom">
-        <x-section-heading title="Produk Unggulan" subtitle="Pilihan Terbaik" />
+        <x-section-heading title="Produk Kami" subtitle="Satu Produk, Kualitas Terbaik" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @php
-                $featured = [
-                    ['slug' => 'garam-halus-premium', 'name' => 'Garam Halus Premium', 'category' => 'Garam Halus', 'weight' => '1 kg', 'description' => 'Garam halus berukuran seragam untuk kebutuhan dapur dan industri makanan.', 'image' => 'https://images.unsplash.com/photo-1518110925495-5fe2eb8e0a05?w=600'],
-                    ['slug' => 'garam-kasar-industri', 'name' => 'Garam Kasar Industri', 'category' => 'Garam Kasar', 'weight' => '25 kg', 'description' => 'Garam kasar untuk proses pengolahan industri, konstruksi, dan pertambakan.', 'image' => 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600'],
-                    ['slug' => 'garam-krosok-murni', 'name' => 'Garam Krosok Murni', 'category' => 'Garam Krosok', 'weight' => '5 kg', 'description' => 'Garam krosok asli tambak untuk keperluan pengasinan dan konsumsi.', 'image' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600'],
-                ];
-            @endphp
-
-            @foreach($featured as $product)
-                <x-product-card :product="$product" />
-            @endforeach
-        </div>
-
-        <div class="text-center mt-10">
-            <a href="{{ route('products') }}" class="btn-primary">
-                Lihat Semua Produk
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            @if($product)
+            <a href="{{ route('product') }}" class="group block bg-[var(--surface)] rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-[var(--border)]">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="aspect-square md:aspect-auto">
+                        <img src="{{ $product?->gambar ?? 'https://images.pexels.com/photos/27098281/pexels-photo-27098281.jpeg' }}"
+                            alt="{{ $product?->nama }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 lg:p-8 flex flex-col justify-center">
+                        <span class="text-primary font-medium text-sm mb-1">{{ $product?->berat }}</span>
+                        <h3 class="text-xl lg:text-2xl font-bold text-[var(--text)] mb-3 transition-colors duration-300">{{ $product?->nama }}</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-4 transition-colors duration-300">{{ Str::limit($product?->deskripsi, 150) }}</p>
+                        <div class="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                            Lihat Detail
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
             </a>
+            @endif
         </div>
     </div>
 </section>

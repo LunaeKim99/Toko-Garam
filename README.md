@@ -4,44 +4,69 @@
   <img src="https://img.shields.io/badge/Alpine.js-v3-8BC0D0?logo=alpine.js&logoColor=white" alt="Alpine.js 3">
   <img src="https://img.shields.io/badge/PHP-8.5-777BB4?logo=php&logoColor=white" alt="PHP 8.5">
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8">
+  <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite">
+  <img src="https://img.shields.io/badge/Breeze-auth-FF2D20" alt="Breeze auth">
 </p>
 
-# Garam Nusantara — Company Profile Website
+# AlfaJaya Garam — Company Profile Website
 
-Website profil perusahaan **Garam Nusantara**, perusahaan distributor garam berkualitas untuk kebutuhan industri maupun konsumen. Dibangun dengan **Laravel 13 + Blade + Tailwind CSS v4**, mobile-first, tanpa backend/database (data statis di controller) sehingga siap dipakai langsung atau dihubungkan ke data nyata.
+Website profil perusahaan **AlfaJaya Garam**, produsen garam premium langsung dari tambak di Jepara, Jawa Tengah. Dibangun dengan **Laravel 13 + Blade + Tailwind CSS v4 + Alpine.js**, mobile-first. Konten bersifat **database-driven** (SQLite default, dapat diganti MySQL/Postgres) dengan **admin panel** berbasis Breeze untuk mengelola profil perusahaan, produk, dan galeri.
 
 ## Fitur
 
-- **6 halaman lengkap**: Beranda, Tentang Kami, Produk, Detail Produk, Artikel, Kontak
-- **Filter produk interaktif** (pencarian + filter kategori) dengan Alpine.js
-- **Galeri produk** dengan thumbnail yang bisa diklik
+- **5 halaman publik**: Beranda, Tentang Kami, Produk, Galeri, Kontak
+- **Konten database-driven** via Eloquent (`CompanyProfile`, `Product`, `Gallery`) dengan null-safe guards
+- **Admin panel** berbasis Breeze (auth + CRUD):
+  - Edit profil perusahaan (`/admin/profil/edit`)
+  - Edit produk (`/admin/produk/edit`)
+  - Kelola galeri — create/read/update/delete (`/admin/galeri`)
+- **Galeri** dengan filter kategori + lightbox (Alpine `x-collapse`)
+- **FAQ accordion** pada halaman produk (Alpine `x-collapse`)
 - **Tombol WhatsApp** langsung ke pemesanan
 - **Animasi scroll** dengan AOS (otomatis nonaktif di mobile ≤768px)
-- **Slider** dengan Swiper.js (testimoni di beranda)
-- **Ikon** dengan Lucide Icons
+- **Slider testimoni** dengan Swiper.js
+- **Dark mode** dengan global Alpine theme store (class-based, persist di localStorage)
+- **Google Maps** embed dengan koordinat configurable (`maps_lat`, `maps_lng`)
+- **Ikon** Lucide
 - **SEO-ready**: title, meta description, dan Open Graph per halaman
 - **Responsive mobile-first** (375px s/d 1920px)
-- **Tema warna & font terpusat** di satu file CSS (Tailwind `@theme`)
+- **Tema warna & font terpusat** di satu file CSS (Tailwind `@theme` + AJ brand color system)
+- **Test suite** (34 tests) — publik + admin + Breeze auth
+- **Deployment**: Dockerfile + Nixpacks untuk Railway/Render
 
-## Halaman
+## Halaman Publik
 
 | Halaman | Route | Keterangan |
 |---|---|---|
-| Beranda | `/` | Hero, fitur unggulan, preview tentang, produk unggulan, proses produksi, testimoni, CTA |
-| Tentang Kami | `/tentang` | Profil, sejarah, visi-misi, nilai perusahaan, timeline, galeri |
-| Produk | `/produk` | Grid produk + pencarian & filter kategori |
-| Detail Produk | `/produk/{slug}` | Galeri, spesifikasi, manfaat, tombol WhatsApp, produk terkait |
-| Artikel | `/artikel` | Artikel unggulan + grid artikel |
+| Beranda | `/` | Hero, keunggulan, preview tentang, produk unggulan, proses produksi, testimoni, CTA |
+| Tentang Kami | `/tentang` | Profil, sejarah, visi-misi, nilai, timeline, galeri |
+| Produk | `/produk` | Katalog produk: spesifikasi, manfaat, keunggulan, FAQ, tombol WhatsApp |
+| Galeri | `/galeri` | Grid galeri + filter kategori + lightbox |
 | Kontak | `/kontak` | Info kontak, form pesan, Google Maps |
+
+## Admin Panel
+
+Semua route admin berada di prefix `/admin` dengan middleware `auth`.
+
+| Halaman | Route | Keterangan |
+|---|---|---|
+| Dashboard | `/admin/dashboard` | Ringkasan 3 kartu (profil, produk, galeri) |
+| Edit Profil | `/admin/profil/edit` | Form edit profil perusahaan (termasuk koordinat maps) |
+| Edit Produk | `/admin/produk/edit` | Form edit produk |
+| Galeri | `/admin/galeri` | Resource CRUD galeri (index, create, edit, delete) |
+
+Login admin: `/login`. Breeze juga menyediakan `/dashboard` dan `/profile` untuk scaffold standar.
 
 ## Tech Stack
 
-- **Laravel 13** (PHP 8.5) — framework backend, routing, Blade templating
-- **Tailwind CSS v4** — utility-first CSS, konfigurasi tema via `@theme` di CSS
-- **Alpine.js 3** — interaktivitas ringan (filter produk, galeri, navbar scroll)
+- **Laravel 13** (PHP 8.5) — framework backend, routing, Blade templating, Eloquent
+- **Breeze** — autentikasi (login, register, password reset, verification, profile)
+- **SQLite** — database default (dapat diganti MySQL/Postgres via `.env`)
+- **Tailwind CSS v4** — utility-first CSS, konfigurasi tema via `@theme` di CSS + AJ brand color system
+- **Alpine.js 3** — interaktivitas ringan (galeri, FAQ accordion, navbar scroll, collapse, dark mode store)
 - **Vite 8** — bundler asset (CSS + JS)
 - **AOS** — animasi scroll (CDN)
-- **Swiper 11** — slider (CDN)
+- **Swiper 11** — slider testimoni (CDN)
 - **Lucide** — ikon (CDN)
 - **Fonts**: Sora (heading) + Inter (body) via Google Fonts
 
@@ -50,6 +75,7 @@ Website profil perusahaan **Garam Nusantara**, perusahaan distributor garam berk
 - PHP ≥ 8.2
 - Composer 2
 - Node.js ≥ 20 + npm
+- Ekstensi PHP: `pdo_sqlite` (untuk SQLite default), `gd`/`imagick` (opsional, untuk upload gambar)
 - (Opsional) Laragon / XAMPP untuk lingkungan lokal
 
 ## Instalasi
@@ -70,9 +96,27 @@ cp .env.example .env
 
 # 5. Generate app key
 php artisan key:generate
+
+# 6. Konfigurasi database (default: SQLite)
+#    Pastikan .env: DB_CONNECTION=sqlite
+#    Buat file database kosong:
+touch database/database.sqlite
+
+# 7. Jalankan migrasi + seeder
+php artisan migrate --seed
+
+# 8. Buat symlink storage (untuk upload gambar galeri)
+php artisan storage:link
+
+# 9. Build asset
+npm run build
 ```
 
-> Catatan: project ini **tidak memerlukan database** — semua data konten berupa data statis (dummy) di `app/Http/Controllers/PageController.php`.
+Seeder membuat akun admin default:
+- **Email**: `admin@garamnusantara.co.id`
+- **Password**: `password`
+
+> Ganti kredensial ini setelah instalasi pertama melalui `/profile`.
 
 ## Menjalankan
 
@@ -84,7 +128,20 @@ npm run dev
 php artisan serve
 ```
 
-Buka **http://127.0.0.1:8000** di browser.
+Buka **http://127.0.0.1:8000** untuk situs publik, atau **http://127.0.0.1:8000/login** untuk login admin.
+
+## Test
+
+```bash
+# Seluruh suite (34 tests, menggunakan SQLite in-memory via RefreshDatabase)
+php artisan test
+
+# Hanya test halaman publik
+php artisan test --filter=PublicPagesTest
+
+# Hanya test admin panel
+php artisan test --filter=AdminPanelTest
+```
 
 ## Build Production
 
@@ -92,64 +149,97 @@ Buka **http://127.0.0.1:8000** di browser.
 npm run build
 ```
 
-Hasil build akan berada di folder `public/build/`.
+Hasil build berada di folder `public/build/`.
 
 ## Struktur Proyek
 
 ```
 app/
-└── Http/
-    └── Controllers/
-        └── PageController.php   # Semua data halaman (statis/dummy)
+├── Http/
+│   └── Controllers/
+│       ├── PageController.php          # Halaman publik (DB-driven)
+│       ├── ProfileController.php        # Scaffold Breeze (profil user)
+│       └── Admin/
+│           ├── DashboardController.php
+│           ├── CompanyProfileController.php
+│           ├── ProductController.php
+│           └── GalleryController.php
+└── Models/
+    ├── CompanyProfile.php
+    ├── Product.php
+    ├── Gallery.php
+    └── User.php
+
+database/
+├── database.sqlite                      # DB default (SQLite)
+├── factories/                           # 4 factories (untuk test)
+├── migrations/                          # users, company_profiles, products, galleries, maps fields
+└── seeders/                              # Seeder data dummy (admin + konten)
 
 resources/
 ├── css/
-│   └── app.css                  # Tema Tailwind v4: warna, font, komponen, utilitas
+│   └── app.css                          # Tema Tailwind v4: @theme, komponen, x-cloak, dark mode
 ├── js/
-│   └── app.js                   # Entry Alpine.js
+│   └── app.js                           # Entry Alpine.js core + theme store
 └── views/
     ├── layouts/
-    │   └── app.blade.php        # Layout master (head, navbar, footer, init library)
-    ├── components/
-    │   ├── navbar.blade.php     # Navbar sticky + transparan→putih saat scroll
-    │   ├── footer.blade.php
-    │   ├── product-card.blade.php
-    │   ├── article-card.blade.php
-    │   └── section-heading.blade.php
-    ├── partials/                # Bagian-bagian halaman beranda (hero, fitur, dll.)
-    └── pages/                   # 6 halaman utama
+    │   └── app.blade.php                # Layout master + Alpine collapse plugin CDN
+    ├── components/                       # navbar, footer, section-heading, partials beranda
+    ├── pages/                            # 5 halaman publik
+    └── admin/                            # Dashboard, profil, produk, galeri (CRUD views)
 
 routes/
-└── web.php                     # 6 route bernama (home, about, products, ...)
+├── web.php                              # Route publik + admin group + Breeze profile
+└── auth.php                             # Route autentikasi Breeze
+
+tests/Feature/
+├── PublicPagesTest.php                  # 5 tests halaman publik
+├── AdminPanelTest.php                   # 5 tests admin
+└── Auth/                                # Tests Breeze (auth, register, password, dll.)
 ```
 
 ## Kustomisasi Tema
 
-Semua token desain terpusat di `resources/css/app.css` (blok `@theme`):
+Semua token desain terpusat di `resources/css/app.css` (blok CSS variables + `@theme`):
 
 ```css
-@theme {
-    --color-primary: #0284C7;      /* Warna utama */
-    --color-primary-dark: #0369A1;
-    --color-dark: #0F172A;         /* Warna teks/bg gelap */
-    --color-light: #F8FAFC;        /* Warna latar terang */
-    --font-sans: 'Inter', sans-serif;
-    --font-heading: 'Sora', sans-serif;
-}
+/* Brand colors (customize these) */
+--primary: #0284C7;
+--primary-light: #0EA5E9;
+--primary-dark: #0369A1;
+--accent: #F59E0B;
+
+/* Text & background */
+--text: #0F172A;
+--text-secondary: #475569;
+--background: #FFFFFF;
 ```
 
-Ubah nilai di atas untuk mengganti warna & font seluruh situs secara konsisten.
+Ubah nilai di atas untuk mengganti warna & font seluruh situs secara konsisten. Font: Sora (heading) + Inter (body) via Google Fonts.
 
-## Mengganti Data
+## Mengelola Konten
 
-Semua data produk, artikel, kontak, dan profil perusahaan berupa array PHP di `app/Http/Controllers/PageController.php`. Untuk memakai data nyata, ganti data pada masing-masing method:
+Konten dikelola melalui **admin panel** — tidak perlu edit kode:
 
-- `home()` — data statistik & konten beranda
-- `about()` — profil perusahaan
-- `products()` — daftar produk + kategori
-- `productDetail()` — detail produk
-- `articles()` — daftar artikel
-- `contact()` — info kontak & jam operasional
+1. Login di `/login` (admin@garamnusantara.co.id / password)
+2. **Profil perusahaan** → `/admin/profil/edit` → ubah nama, deskripsi, alamat, kontak, logo, koordinat Google Maps
+3. **Produk** → `/admin/produk/edit` → ubah nama produk, spesifikasi, manfaat, keunggulan, WhatsApp
+4. **Galeri** → `/admin/galeri` → tambah/edit/hapus foto galeri + kategori
+
+Upload gambar galeri disimpan di `storage/app/public/`, diakses via symlink `public/storage`.
+
+## Deployment
+
+**Railway (Railpack)** — gunakan `railpack.json` (no Dockerfile, no Nixpacks):
+
+- **Build**: `npm run build` (asset Vite ke `public/build/`)
+- **Start**: `php artisan optimize:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT`
+
+**SQLite + Railway persistent volume** — project memakai SQLite (`DB_CONNECTION=sqlite`, `DB_DATABASE=/data/database.sqlite`).
+Wajib pasang **persistent volume** di Railway dan mount ke `/data` agar file `database.sqlite` persisten antar deploy.
+Tanpa volume, migrasi gagal karena file DB tidak ditemukan.
+
+**PHP extensions** — diekstrak dari `composer.json` (`ext-*`). Untuk ekstensi non-standar seperti Redis, set env Railway: `RAILPACK_PHP_EXTENSIONS=redis`.
 
 ## Lisensi
 

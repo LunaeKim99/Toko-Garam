@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Beranda — Garam Nusantara')
-@section('meta_description', 'Garam Nusantara menyediakan produk garam berkualitas tinggi untuk kebutuhan industri dan konsumen.')
+{{-- DEPLOY_VERSION: efd9509 — verify this appears on production --}}
+
+@section('meta_title', 'Beranda — Garam Nusantara Jepara')
+@section('meta_description', 'Garam Nusantara Jepara — produsen garam premium langsung dari tambak di Jepara, Jawa Tengah.')
 
 @section('content')
     @include('partials.hero')
     @include('partials.features')
     @include('partials.about-preview')
-    @include('partials.featured-products')
+    @include('partials.product-highlights')
+    @include('partials.product-advantages')
     @include('partials.process')
+    @include('partials.location')
     @include('partials.testimonials')
     @include('partials.cta')
 @endsection

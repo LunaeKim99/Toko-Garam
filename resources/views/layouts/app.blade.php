@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+        })();
+    </script>
 
-    <title>@yield('meta_title', 'Garam Nusantara — Solusi Garam Berkualitas')</title>
-    <meta name="description" content="@yield('meta_description', 'Garam Nusantara menyediakan produk garam berkualitas tinggi untuk kebutuhan industri dan konsumen.')">
+    <title>@yield('meta_title', 'Garam Nusantara Jepara — Garam Premium dari Tambak')</title>
+    <meta name="description" content="@yield('meta_description', 'Garam Nusantara Jepara — produsen garam premium langsung dari tambak di Jepara, Jawa Tengah.')">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo/logo-utama.svg') }}">
 
-    {{-- Open Graph --}}
-    <meta property="og:title" content="@yield('meta_title', 'Garam Nusantara')">
-    <meta property="og:description" content="@yield('meta_description', 'Garam berkualitas tinggi.')">
+    <meta property="og:title" content="@yield('meta_title', 'Garam Nusantara Jepara')">
+    <meta property="og:description" content="@yield('meta_description', 'Garam premium dari tambak Jepara.')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
 
-    {{-- Lucide Icons --}}
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    {{-- AOS CSS + JS --}}
+<script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-    {{-- Swiper CSS + JS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
 
-    {{-- Vite CSS + JS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @yield('styles')
 </head>
-<body class="font-sans text-dark bg-white antialiased">
+<body class="antialiased transition-colors duration-300">
     <x-navbar />
 
     <main>
@@ -39,7 +40,6 @@
 
     <x-footer />
 
-    {{-- Lucide Icons Init --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
@@ -48,7 +48,6 @@
 
     @stack('scripts')
 
-    {{-- AOS Init --}}
     <script>
         AOS.init({
             duration: 800,
